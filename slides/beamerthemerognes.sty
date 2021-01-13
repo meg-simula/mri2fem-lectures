@@ -1,0 +1,48 @@
+\ProvidesPackage{beamerthemerognes}
+% The Marie Rognes @ Simula beamer theme
+\mode<presentation>
+
+%\usefonttheme{structurebold}
+
+% Add numbers in the lower right corner, but drop the default beamer
+% navigation symbols
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{}
+
+% Use colors from Simula visual profile
+\definecolor{simulaorange}{RGB}{241,90,34}
+\definecolor{rognesred}{rgb}{0.8, 0.2, 0.0}
+\definecolor{rognesblue}{RGB}{61,89,171} % cobalt
+
+% Set colors for various styles (untested)
+\setbeamercolor{simula}{fg=white,bg=rognesred}
+\setbeamercolor{title}{fg=black!100!white,bg=white}
+\setbeamercolor{frametitle}{fg=rognesred,bg=white}
+%\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamercolor{normal text}{fg=black!90!white,bg=white}
+\setbeamercolor{structure}{fg=rognesblue,bg=white}
+\setbeamercolor{itemize item}{fg=rognesblue}
+\setbeamercolor{alerted text}{fg=rognesblue, bg=white}
+
+% Title page
+\newcommand{\rognestitlepage}{%
+  \setbeamertemplate{background canvas}{
+    \color{white} \vrule width 0.2cm height 1cm%
+    \includegraphics[width=0.2\paperwidth]{simula_logo_main_RGB.pdf}%
+  }
+}
+
+% Page with Simula logo in the bottom left corner
+\newcommand{\logopage}{%
+  \setbeamertemplate{background canvas}{
+    % we want the footer at the bottom, so we use a phantom ruler
+    \color{white} \vrule width 0.1cm height 0.98\paperheight%
+    \includegraphics[width=0.1\paperwidth]{simula_logo_main_RGB.pdf}%
+  }
+}
+
+% No logo
+\newcommand{\cleanpage}{
+  \usebackgroundtemplate{}
+}
+

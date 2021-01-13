@@ -1,0 +1,9 @@
+Your brain has its own waterscape: whether you are reading or
+sleeping, fluid flows through or around the brain tissue and clears
+metabolic waste in the process. These physiological processes are
+crucial for the well-being of the brain. In spite of their importance
+we understand them but little. Mathematical and computational
+modelling could play a crucial role in gaining new insight. The aim of
+these lectures is to give an introduction to the brain's waterscape in
+general and mathematical and computational modelling of the brain as a
+porous and elastic medium in particular.
