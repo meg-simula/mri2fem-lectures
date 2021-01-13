@@ -115,25 +115,12 @@
 
 \cleanpage
 
-\begin{frame}
-\frametitle{Teasers from own research}
+\input{/home/meg/presentations/slides/waterscape_uq_tracer_2019.tex}
 
-\begin{itemize}
-\item
-  UQ paper
-\item
-  MPET paper
-\item
-  Respiratory paper
-\end{itemize}
-\end{frame}
-
-
-{\usebackgroundtemplate{\includegraphics[width=\paperwidth]{/home/meg/presentations/slides/graphics/Collaborators.pdf}}
+{\usebackgroundtemplate{\includegraphics[width=\paperwidth]{graphics/Collaborators.pdf}}
 \begin{frame}
 \end{frame}
 }
-
 
 \begin{frame}
   \frametitle{Outline of lectures}
@@ -143,33 +130,29 @@
       \item
         Why simulate the brain's waterscape?
       \item
-        Where can I find the slides (and book, data, scripts)?
+        Where can I find the slides (, book, data, and scripts)?
       \item
-        Introduction
-        \begin{itemize}
-        \item
-          Introduction to the brain's waterscape: anatomy
-        \item
-          Introduction to the brain's waterscape: physiology
-        \item
-          Introduction to brain imaging (MRI)
-        \item
-          A software ecosystem: from MRI to finite elements
-        \end{itemize}
+        Introduction to brain physiology and imaging
+        %% \begin{enumerate}{\roman}
+        %% \item
+        %%   Introduction to the brain's waterscape: anatomy
+        %% \item
+        %%   Introduction to the brain's waterscape: mechanics
+        %% \item
+        %%   Introduction to brain imaging (MRI)
+        %% \item
+        %%   A software ecosystem: from MRI to finite elements
+        %% \end{enumerate}
       \item
-        From T1 images to numerical simulation
-        \begin{itemize}
-        \item
-          A model problem: diffusion of solutes
-        \item
-          Creating surfaces from a T1 series
-        \item
-          Refining the surfaces
-        \item
-          Creating volume meshes from surfaces
-        \item
-          A numerical simulation of diffusion
-        \end{itemize}
+        From T1 MRI images to numerical simulation
+        %% \begin{itemize}
+        %% \item
+        %%   A model problem: diffusion of solutes
+        %% \item
+        %%   From T1 images to a finite element mesh
+        %% \item
+        %%   A numerical simulation of diffusion
+        %% \end{itemize}
       \end{itemize}
     \item[Lecture 3-4]
     \item[Lecture 5-6]
@@ -178,14 +161,32 @@
 %\end{enumerate}
 \end{frame}
 
+\mysection{Lecture series resources}
+
 \begin{frame}
-  \frametitle{Where can I find resources associated with these lectures?}
-  \begin{enumerate}
-  \item
-    The book on GitHub
-  \item
-    Zenodo community:
-  \end{enumerate}
+  \frametitle{Mathematical modeling of the human brain -- book available on GitHub}
+  \framesubtitle{Simula SpringerBrief on Computing to be}
+  \centering
+  \includegraphics[width=\textwidth]{graphics/mri2fem-book-github.png} \\
+  \refer{\href{https://github.com/kent-and/mri2fem}{https://github.com/kent-and/mri2fem}}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Data and software available on Zenodo}
+  \vspace{-0.5em}
+  \centering
+  \includegraphics[width=0.85\textwidth]{graphics/mri2fem-zenodo.png} \\
+  \vspace{-1em}
+  \refer{\href{https://zenodo.org/communities/mri2fem/}{https://zenodo.org/communities/mri2fem/}}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Slides and lecture material available on GitHub}
+  \centering
+  \includegraphics[width=\textwidth]{graphics/mri2fem-lectures-github.png} \\
+  \refer{\href{https://github.com/meg-simula/mri2fem-lectures}{https://github.com/meg-simula/mri2fem-lectures}}
 \end{frame}
 
 %-------------------------------------------------------------------------------
@@ -289,18 +290,55 @@
 
 \mysection{A model problem: diffusion of solutes}
 
-\mysection{Creating surfaces from T1 images}
-
-\mysection{Refining and smoothing tessellated surfaces}
-
-\mysection{Creating volume meshes from surfaces}
-
-\mysection{A numerical simulation of diffusion}
-
-  \begin{frame}
+\begin{frame}
 \frametitle{}
 \end{frame}
 
+\mysection{From T1 images to a finite element mesh}
+
+\begin{frame}
+\frametitle{From T1 images to a mesh}
+
+To generate a mesh from an MRI data set including T1-weighted images, we
+follow three main steps:
+1. extract a T1-weighted image series from the MRI dataset;
+2. create (boundary) surfaces from the T1-weighted images using FreeSurfer;
+3. generate a volume mesh of the interior using FreeSurfer along with SVM-Tk.
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Creating tessellated surfaces}
+\end{frame}
+
+\begin{frame}
+\frametitle{Refining tessellated surfaces}
+\end{frame}
+
+\begin{frame}
+\frametitle{Smoothing tessellated surfaces}
+\end{frame}
+
+\begin{frame}
+\frametitle{Creating volume meshes from surfaces}
+\end{frame}
+
+\mysection{A numerical simulation of diffusion}
+
+\begin{frame}
+\frametitle{Numerical method}
+\end{frame}
+
+\begin{frame}
+\frametitle{Set-up}
+\end{frame}
+
+\begin{frame}
+\frametitle{Numerical results}
+\end{frame}
+
+
+\mysection{Video samples}
 
 %-------------------------------------------------------------------------------
 
