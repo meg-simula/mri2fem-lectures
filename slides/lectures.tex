@@ -96,7 +96,7 @@
 
       \vspace{4em}
 
-      {\bf Mathematical modelling of the brain's waterscape} \\
+      {\bf Brain modelling: \\ from magnetic resonance images \\ to finite element simulation} \\
 
       \bigskip
       \bigskip
@@ -138,22 +138,41 @@
 \begin{frame}
   \frametitle{Outline of lectures}
   \begin{description}
-    \item[Lecture 1]
+    \item[Lecture 1-2]
       \begin{itemize}
       \item
         Why simulate the brain's waterscape?
       \item
         Where can I find the slides (and book, data, scripts)?
       \item
-        Introduction to brain physiology
+        Introduction
+        \begin{itemize}
+        \item
+          Introduction to the brain's waterscape: anatomy
+        \item
+          Introduction to the brain's waterscape: physiology
+        \item
+          Introduction to brain imaging (MRI)
+        \item
+          A software ecosystem: from MRI to finite elements
+        \end{itemize}
       \item
-        Introduction to brain imaging
+        From T1 images to numerical simulation
+        \begin{itemize}
+        \item
+          A model problem: diffusion of solutes
+        \item
+          Creating surfaces from a T1 series
+        \item
+          Refining the surfaces
+        \item
+          Creating volume meshes from surfaces
+        \item
+          A numerical simulation of diffusion
+        \end{itemize}
       \end{itemize}
-    \item[Lecture 2] 
-    \item[Lecture 3]
-    \item[Lecture 4]
-    \item[Lecture 5]
-    \item[Lecture 6]
+    \item[Lecture 3-4]
+    \item[Lecture 5-6]
   \end{description}
 
 %\end{enumerate}
@@ -169,12 +188,14 @@
   \end{enumerate}
 \end{frame}
 
+%-------------------------------------------------------------------------------
 %
 % Lecture 1
 % \input{lecture1.tex}
 %
+%-------------------------------------------------------------------------------
 
-\mysection{Introduction to brain anatomy}
+\mysection{The brain's waterscape: anatomy}
 
 \begin{frame}
   \frametitle{Brain anatomy: macro-scale}
@@ -192,9 +213,42 @@
   \frametitle{Magnetic resonance imaging}
 \end{frame}
 
-\mysection{Introduction to brain physiology}
+\mysection{The brain's waterscape: physiology}
 
-\mysection{Introduction to magnetic resonance imaging of the brain}
+\begin{frame}
+  \frametitle{Diffusion}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Glymphatics}
+\end{frame}
+
+\begin{frame}
+  \frametitle{iPAD}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Controversies and questions}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Neurodegenerative disease}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Sleep}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Alcohol}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Exercise}
+\end{frame}
+
+\mysection{Introduction to brain magnetic resonance imaging (MRI)}
 
 \begin{frame}
   \frametitle{Magnetic resonance imaging: T1 vs T2}
@@ -211,6 +265,42 @@
 \begin{frame}
   \frametitle{DicomBrowser and example}
 \end{frame}
+
+\mysection{A software ecosystem: from MRI to finite elements}
+
+\begin{frame}
+\frametitle{Illustration of pipeline}
+\end{frame}
+
+\begin{frame}
+\frametitle{Packages and installation}
+\end{frame}
+
+\begin{frame}
+\frametitle{Book Chapter 2, Docker image}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+%
+% Lecture 2
+% \input{lecture2.tex}
+%
+%-------------------------------------------------------------------------------
+
+\mysection{A model problem: diffusion of solutes}
+
+\mysection{Creating surfaces from T1 images}
+
+\mysection{Refining and smoothing tessellated surfaces}
+
+\mysection{Creating volume meshes from surfaces}
+
+\mysection{A numerical simulation of diffusion}
+
+  \begin{frame}
+\frametitle{}
+\end{frame}
+
 
 %-------------------------------------------------------------------------------
 
