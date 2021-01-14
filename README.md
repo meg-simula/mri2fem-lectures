@@ -40,4 +40,10 @@ online material (Zenodo, Github) including videos from Youtube.
 
 Do a practice run of each lecture in before-hand.
 
+## YouTube resources  ##
 
+1. Downloading the MRI2FEM data set, viewing and extracting MR series
+   using DICOM Browser
+2. Viewing the FreeSurfer output
+3. Creating a mesh of the left hemisphere using SVM-Tk from FreeSurfer surfaces
+4. Simulating diffusion over the left hemisphere using FEniCS
