@@ -27,6 +27,10 @@ These lectures assume that you, the reader or audience, have
 * No to some knowledge of brain physiology and imaging
 * Knowledge of/Interest in using command-line tools
 
+The FEniCS tutorial by Langtangen d Logg (2016) is a very good
+introduction to all of the above. (Note however that some of the code
+examples there are outdated.)
+
 ## Tips for lecturing via Zoom ##
 
 These lectures are given via two devices: one laptop (screen) mainly

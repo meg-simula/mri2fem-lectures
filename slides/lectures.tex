@@ -16,6 +16,9 @@
 % Use my theme
 \usetheme{rognes}
 
+% Used for image placement
+\def\imagetop#1{\vtop{\null\hbox{#1}}}
+
 % Misc packages
 \usepackage{graphicx}
 \usepackage[export]{adjustbox}
@@ -64,7 +67,7 @@
 \tikzstyle{every picture}+=[remember picture]
 \everymath{\displaystyle}
 
-\usepackage[footnotesize, figurename=,size=scriptsize,font={color=rognesblue}]{caption}
+\usepackage[small, figurename=,size=scriptsize,font={color=darkgray}]{caption}
 
 
 
@@ -95,6 +98,7 @@
   \vspace{-0.5em}
 }
 
+\newcommand{\emp}[1]{\texttt{#1}}
 
 %-------------------------------------------------------------------------------
 %-------------------------------------------------------------------------------
@@ -150,11 +154,6 @@
 % ---------------------------------------------------------------------------------------
 \input{/home/meg/presentations/slides/waterscape_uq_tracer_2019.tex}
 
-{\usebackgroundtemplate{\includegraphics[width=\paperwidth]{graphics/Collaborators.pdf}}
-\begin{frame}
-\end{frame}
-}
-
 % 5 min
 % ---------------------------------------------------------------------------------------
 
@@ -200,6 +199,11 @@
   \end{description}
 \end{frame}
 
+{\usebackgroundtemplate{\includegraphics[width=\paperwidth]{graphics/Collaborators.pdf}}
+\begin{frame}
+\end{frame}
+}
+
 \mysection{Lecture series resources}
 
 \begin{frame}
@@ -214,7 +218,7 @@
   \framesubtitle{by KA Mardal, ME Rognes, TB Thompson and LM Valnes; Simula SpringerBrief on Computing (2021)}
   \centering
   \includegraphics[width=\textwidth]{graphics/mri2fem-book-github.png} \\
-  \refer{\href{https://github.com/kent-and/mri2fem}{https://github.com/kent-and/mri2fem}}
+  \refer{Mardal et al (2021): \href{https://github.com/kent-and/mri2fem}{https://github.com/kent-and/mri2fem}}
 \end{frame}
 
 
@@ -307,13 +311,13 @@
 \input{/home/meg/presentations/slides/waterscape_sleep_xie.tex}
 \input{/home/meg/presentations/slides/waterscapes_alzheimers.tex}
 
-\begin{frame}
-  \frametitle{Alcohol}
-\end{frame}
+%% \begin{frame}
+%%   \frametitle{Alcohol}
+%% \end{frame}
 
-\begin{frame}
-  \frametitle{Exercise}
-\end{frame}
+%% \begin{frame}
+%%   \frametitle{Exercise}
+%% \end{frame}
 
 \mysection{A very brief introduction to magnetic resonance imaging (MRI)}
 
@@ -431,72 +435,343 @@ T1 (left) versus T2 (right). In T2 MRI: fluids gives high signal intensity (ligh
 \mysection{A model problem: diffusion of solutes}
 
 \begin{frame}
-\frametitle{}
+  \frametitle{Aim: to model and simulate the diffusion of a solute in brain regions}
+  \vspace{-5em}
+  \begin{block}{Model problem: diffusion equation}
+    Find the concentration $u = u(t, x)$ at spatial points $x \in
+    \Omega$ and time points $t > 0$ such that
+    \begin{subequations}
+      \label{eq:diffusion}
+      \begin{align}
+        \label{eq:diffusion:a}
+        u_t - \Div D \Grad u &= f &&\text{ in } (0, T] \times \Omega, \\
+          \label{eq:diffusion:b}
+          u &= u_d && \text{ on } (0, T] \times \partial \Omega, \\
+            \label{eq:diffusion:c}
+            u(0, \cdot) &= u_0 && \text{ in } \Omega.
+      \end{align}
+    \end{subequations}
+  \end{block}
+
 \end{frame}
 
 \mysection{From T1 images to a finite element mesh}
 
 \begin{frame}
-\frametitle{From T1 images to a mesh}
+\frametitle{Follow these three steps to generate a mesh from T1 images}
 
-To generate a mesh from an MRI data set including T1-weighted images, we
-follow three main steps:
-1. extract a T1-weighted image series from the MRI dataset;
-2. create (boundary) surfaces from the T1-weighted images using FreeSurfer;
-3. generate a volume mesh of the interior using FreeSurfer along with SVM-Tk.
+To generate a mesh from an MRI data set including T1-weighted images,
+we follow three main steps:
+\bigskip
+\begin{enumerate}
+\item
+  extract a T1-weighted image series from the MRI dataset using DicomBrowser;
+\item
+  create (boundary) surfaces from the T1-weighted images using FreeSurfer;
+\item
+  generate a volume mesh of the interior using FreeSurfer along with SVM-Tk.
+\end{enumerate}
+\end{frame}
+
+\videosection{Video example: extracting MR series using DicomBrowser}{}
+
+\begin{frame}
+\frametitle{Step 2: Using FreeSurfer to segment images and create surfaces}
+
+FreeSurfer offers the command \emp{recon-all} to segment the brain images
+and reconstruct surfaces. 
+
+\terminal{\$ cd mri2fem-dataset \\
+\$ cd dicom/ernie/T13D \\
+\$ recon-all -subjid ernie -i IM\_0162 -all}
+
+This command is compute-intensive, with run times likely of 12--24
+hours.
+
+Key outputs (\emp{mri2fem-dataset/freesurfer/ernie}). are 
+\begin{itemize}
+\item \emp{/stats}: contains files providing statistics derived during segmentation.
+\item \emp{/mri}: contains volume files generated during segmentation
+\item \emp{/surf}: contains surface files generated during segmentation
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{FreeSurfer generates pial and white/gray matter surfaces}
+
+\terminal{\$ cd mri2fem-dataset/freesurfer/ernie/surf\\
+\$ mris\_convert ./lh.pial pial.stl \\
+\$ paraview}
+
+\end{frame}
+
+\videosection{Video example: viewing the FreeSurfer output}{}
+
+\begin{frame}
+\frametitle{The surfaces may need enhancement to be suitable for finite element meshes}
+
+\begin{columns}
+\begin{column}{0.6\textwidth}
+In practice, brain surfaces generated from T1 images 
+\vspace{-1em}
+\begin{itemize}
+\item may have unphysiologically sharp corners,   
+\item may include triangles with very large aspect ratios, 
+\item have topological defects such as holes, and
+\item may self-intersect or overlap with other surfaces.   
+\end{itemize}
+
+\medskip
+
+\alert{Result:} Low quality meshes (if any). \\
+
+\medskip
+
+\alert{Fix:} Enhance surface quality prior to meshing
+\end{column}
+\begin{column}{0.4\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp3/FIG/juncturers-gap.png}
+\end{column}
+
+\end{columns}
 \end{frame}
 
 
 \begin{frame}
-\frametitle{Creating tessellated surfaces}
+  \frametitle{SVM-Tk includes utilities for remeshing surfaces}
+  \centering
+  \includegraphics[width=0.49\textwidth]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp3/FIG/raw-stlmesh.png}
+  \includegraphics[width=0.49\textwidth]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp3/FIG/remesh-stlmesh.png}
+  %\caption{Original (left) pial surface and (right) after remeshing with \svmtk{}}
+  \refer{Mardal et al (2021, Chapter 3.2.1); mri2fem/chp3/remesh\_surface.py}
 \end{frame}
 
-\begin{frame}
-\frametitle{Refining tessellated surfaces}
-\end{frame}
 
 \begin{frame}
-\frametitle{Smoothing tessellated surfaces}
+  \frametitle{SVM-Tk includes utilities for smoothing surfaces}
+  \begin{figure}
+  \centering
+  \includegraphics[width=0.32\textwidth]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp3/FIG/unsmoothed.png}
+  \includegraphics[width=0.32\textwidth]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp3/FIG/taubin-smoothed-10.png}
+  \includegraphics[width=0.32\textwidth]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp3/FIG/oversmoothing.png}
+
+  Original pial surface \hspace{3em} after Taubin smoothing \hspace{3em}
+after over-smoothing.
+  \end{figure}
+  \bigskip
+  
+  \refer{Mardal et al (2021, Chapter 3.2.2); mri2fem/chp3/smooth\_surface.py}
 \end{frame}
 
-\begin{frame}
-\frametitle{Creating volume meshes from surfaces}
+\begin{frame}[fragile]
+\frametitle{SVM-Tk is designed to create brain volume meshes from surfaces}
+
+\begin{columns}
+\begin{column}{0.34\textwidth}
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp3/FIG/ernie-volume-16-r.png} \\
+  \includegraphics[width=\textwidth]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp3/FIG/ernie-volume-64-r.png}
+\end{figure}
+\end{column}
+\begin{column}{0.65\textwidth}
+  \begin{python}
+import SVMTK as svmtk
+
+def create_volume_mesh(stlfile, output, n=16):
+    # Load input file
+    surface = svmtk.Surface(stlfile)
+    
+    # Generate the volume mesh
+    domain = svmtk.Domain(surface)
+    domain.create_mesh(n)
+
+    # Write the mesh to the output file
+    domain.save(output)
+
+# Create mesh    
+create_volume_mesh("lh.pial.stl", "lh.mesh")
+  \end{python}
+  \refer{Mardal et al (2021, Chapter 3.1.3); mri2fem/chp3/surface\_to\_mesh.py}
+\end{column}
+\end{columns}
+
 \end{frame}
+
+\videosection{Video example: creating a mesh of the left hemisphere}{}
 
 \mysection{A numerical simulation of diffusion}
 
 \begin{frame}
-\frametitle{Numerical method}
+\frametitle{Solving the diffusion equation with implicit Euler and finite elements (I)}
+
+Recall our diffusion equation:
+\begin{equation*}
+  u_t - \Div D \Grad u = f \text{ in } (0, T] \times \Omega, 
+\end{equation*}
+
+Define discrete times: 
+
+%% $0 = t_0 \leq t_1 \dots \leq t_N = T$, where $N$ is the number of time
+%% steps and the time step (size) $\tau_n = t_n - t_{n-1}$ for $n = 1,
+%% \dots, N$.
+
+\bigskip
+\bigskip
+
+Compute approximate solutions $u^n_h$ of~\eqref{eq:diffusion} such
+that $u^n_h \approx u(t^n)$ for each $n$.
+
+\medskip
+We do a first-order backward difference approximation in time
+%% \begin{equation}
+%%   u(t_n) \approx u^n, \quad
+%%   u_t(t_n) \approx \frac{1}{\tau_n} (u^n - u^{n-1}),
+%% \end{equation}
+
+\bigskip
+\bigskip
+
+and obtain:
+\begin{equation}
+  \label{eq:chp3:time-discrete}
+  \frac{1}{\tau_n} (u^n - u^{n-1}) - \Div D \Grad u^n = f(t^n) \quad \text{in } \Omega. 
+\end{equation}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Solving the diffusion equation with implicit Euler and finite elements (II)}
+
+  \begin{equation*}
+    \frac{1}{\tau_n} (u^n - u^{n-1}) - \Div D \Grad u^n = f(t^n) \quad \text{in } \Omega. 
+  \end{equation*}
+
+  Let $V_h$ be continuous piecewise $k$-polynomials relative to
+  our mesh defining $\Omega$.
+
+  \bigskip
+  Derive weak formulation: 
+  \vspace{10em}
+  
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Solving the diffusion equation with implicit Euler and finite elements (II)}
+
+  Let $V_h$ be continuous piecewise $k$-polynomials relative to
+  our mesh defining $\Omega$.
+
+  \bigskip
+
+  Multiply by test functions $\phi \in V_h$, integrate by parts, and
+  shuffle to obtain the weak formulation:
+
+  \bigskip
+  
+  Find the discrete solution $u_h^n \in V$ at each time $n = 1, \dots,
+  N$ such that
+  \begin{equation*}
+    \inner{u_h^n}{\phi} + \tau_n \inner{\Grad u_h^n}{\Grad \phi}
+    =  \inner{u_h^{n-1}}{\phi} + \tau_n \inner{f^n}{\phi},  
+  \end{equation*}
+  for all $\phi \in V_h$.
+  
+  \bigskip
+  
+  where
+  \begin{equation*}
+    \inner{u}{\phi} = \int_{\Omega} u \, \phi \dx.
+  \end{equation*}
+    \refer{The FEniCS tutorial (2016); Mardal et al (2021, Chapter 3.3.3); mri2fem/chp3/diffusion.py}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solving the diffusion equation using FEniCS}
+
+  \begin{python}
+# Read the mesh
+mesh = Mesh()
+file = XDMFFile(MPI.comm_world, "ernie.xdmf") # mm 
+file.read(mesh)
+...
+# Define the finite element spaces and functions
+V = FunctionSpace(mesh, "Lagrange", 1)
+u = TrialFunction(V)
+...
+# Define the variational system to be solved at each time
+a = (u*v + tau*D*dot(grad(u), grad(v)))*dx
+L = (u_*v + tau*f*v)*dx
+...
+# Solve at each time step
+for n in range(1, N+1):
+    ...
+    bc.apply(A, b)
+    solve(A, u.vector(), b, "gmres", "amg")
+  \end{python}
+  \vspace{-1em}
+  \refer{The FEniCS tutorial (2016); Mardal et al (2021, Chapter 3.3.3); mri2fem/chp3/diffusion.py}
+
 \end{frame}
 
 \begin{frame}
-\frametitle{Set-up}
+\frametitle{Simulated tracer concentrations after injection into the SAS}
+
+\begin{columns}[T]
+  \begin{column}{0.6\textwidth}
+    \begin{figure}
+      \begin{tabular}{l l l l}
+        \imagetop{2h}&  \imagetop{\includegraphics[width=0.35\textwidth]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp3/FIG/mri-tracer/2h}}&
+        \imagetop{6h}&  \imagetop{\includegraphics[width=0.35\textwidth]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp3/FIG/mri-tracer/6h}}\\
+        \imagetop{12h}& \imagetop{\includegraphics[width=0.35\textwidth]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp3/FIG/mri-tracer/12h}}&
+        \imagetop{24h}& \imagetop{\includegraphics[width=0.35\textwidth]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp3/FIG/mri-tracer/24h}}\\
+        \imagetop{48h}& \imagetop{\includegraphics[width=0.35\textwidth]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp3/FIG/mri-tracer/48h}}&
+        \imagetop{72h}& \imagetop{\includegraphics[width=0.35\textwidth]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp3/FIG/mri-tracer/72h}}
+      \end{tabular}
+      %% \caption{Simulated tracer concentration at given times (2, 6, 12,
+      %%   24, 48, 72h) post injection into subarachnoid CSF. Blue
+      %%   represents lower values, while yellow represents higher values.}
+    \end{figure}
+  \end{column}
+  \begin{column}{0.4\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp3/FIG/amounts.png} \\
+    \includegraphics[width=0.9\textwidth]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp3/FIG/concentrations.png}
+    %    \caption{Plots of quantities of interest associated with the
+    %  computed concentration solution: total amount of solute $Q$ over
+    %  time $t$ (left) and concentration of solution $u(p, t)$ for a
+    %  given point $p$ over time $t$ (right).}
+    %\label{fig:chp3:png-plots}
+  \end{column}
+\end{columns}
+
 \end{frame}
 
+\videosection{Video example: simulating diffusion}{}
+
+
+\mysection{Until next week ...}
+ 
 \begin{frame}
-\frametitle{Numerical results}
-\end{frame}
-
-\mysection{Video samples}
-
-\mysection{Lecture 1-2 home work}
-
-\begin{frame}
-\frametitle{Lecture 1-2 home work}
+\frametitle{Want to give it a try? Natural first steps:}
 \begin{enumerate}
 \item
-  Download the slides from this lecture:  \href{https://github.com/meg-simula/mri2fem-lectures}{https://github.com/meg-simula/mri2fem-lectures}
+  Download the slides from this lecture:  \href{https://github.com/meg-simula/mri2fem-lectures}{https://github.com/meg-simula/mri2fem-lectures}.
 \item
   Download the MRI2FEM data set and software from Zenodo and inspect
-  the contents using the tools discussed
+  the contents using the tools discussed.
 \item
-  Download the book
+  Download the book: Mardal et al (2021): \href{https://github.com/kent-and/mri2fem}{https://github.com/kent-and/mri2fem}.
 \item
-  Install software dependencies following the instructions in the book (Chapter 2)
+  Install software dependencies following the instructions in Chapter
+  2 of Mardal et al (2021).
 \item
-  Try running some of the sample code in book Chapter 3
+  Try running some of the sample code in Chapter 3 of Mardal et al
+  (2021).
 \end{enumerate}
-How did it go? Mail me relevant images (meg@simula.no) before next week! 
 \end{frame}
 
 %-------------------------------------------------------------------------------
