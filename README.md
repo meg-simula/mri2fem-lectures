@@ -2,17 +2,17 @@
 
 This is a series of lectures given as part of the University of
 Bergen's Porous Media Short Course Series in the Spring of 2021. The
-lectures will be given online via Zoom. 
+lectures are given online via Zoom.
 
 ## Prior knowledge  ##
 
 These lectures assume that you, the reader or audience, have
 
 * Some knowledge of partial differential equations (PDEs) and finite
-  element methods (FEM);
-* Some knowledge of programming (Python, bash);
-* No to some knowledge of brain physiology and imaging;
-* Knowledge of/Interest in using command-line tools.
+  element methods (FEM)
+* Some knowledge of programming (Python, bash)
+* No to some knowledge of brain physiology and imaging
+* Knowledge of/Interest in using command-line tools
 
 ## Tips for lecturing via Zoom ##
 
