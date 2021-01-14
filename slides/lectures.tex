@@ -54,6 +54,7 @@
 \newcommand{\duality}[2]{\langle #1, #2 \rangle}
 
 \newcommand{\mysection}[1]{\begin{frame} \begin{center} \vspace{3em} \textbf{#1} \end{center} \end{frame}}
+\newcommand{\videosection}[2]{\begin{frame} \begin{center} \vspace{3em} \href{#2}{\textcolor{rognesred}{\textbf{#1}}} \end{center} \end{frame}}
 \newcommand{\sectionwithrefer}[2]{\begin{frame} \begin{center} \vspace{3em} \textbf{#1} \end{center} \refer{#2} \end{frame}}
 
 \newtheorem{prop}[theorem]{Proposition}
@@ -64,6 +65,37 @@
 \everymath{\displaystyle}
 
 \usepackage[footnotesize, figurename=,size=scriptsize,font={color=rognesblue}]{caption}
+
+
+
+%% \usepackage{listings}
+%% \usepackage[most]{tcolorbox} 	%used for writing process notes, code boxes 
+%% \tcbuselibrary{listings,skins}  % skins needed for code box styles
+%% \usepackage{color}
+%% \usepackage{amsfonts}
+%% \usepackage{fancyvrb}		%provides tab and white space preservation for 
+%% 				%the verbatim environment. Needed for Python
+%% 				%code inclusion
+
+\definecolor{programcode}{gray}{0.65}
+
+\def\formtmpX#1#2{{\vskip3pt\noindent\fboxsep=0pt{\parbox{\textwidth}{\hbox to \textwidth{\hskip3pt\vbox{\raggedright\noindent\textbf{#2\vphantom{Qy}}}\hfill}}}\vskip3pt\par
+\noindent\kern0pt}}
+
+\newenvironment{programcode}[1]{\ignorespaces\def\stmtopen##1{##1}%
+\formtmpX{programcode}{\centerline{\small{#1}}}}{\noindent\textcolor{programcode}{\rule{\columnwidth}{0pt}}\par\addvspace{\baselineskip}}%
+
+
+
+\newcommand{\terminal}[1]{
+  \vspace{-1em}
+  \begin{programcode}{}%{Terminal window}%
+    \colorbox{blue!10}{\parbox{0.98\textwidth}{\textcolor{black}{\texttt{#1}}}}
+  \end{programcode}
+  \vspace{-0.5em}
+}
+
+
 %-------------------------------------------------------------------------------
 %-------------------------------------------------------------------------------
 
@@ -115,6 +147,7 @@
 
 \cleanpage
 
+% ---------------------------------------------------------------------------------------
 \input{/home/meg/presentations/slides/waterscape_uq_tracer_2019.tex}
 
 {\usebackgroundtemplate{\includegraphics[width=\paperwidth]{graphics/Collaborators.pdf}}
@@ -122,15 +155,23 @@
 \end{frame}
 }
 
+% 5 min
+% ---------------------------------------------------------------------------------------
+
 \begin{frame}
   \frametitle{Outline of lectures}
+  \begin{center}
+  \includegraphics[height=2.3cm]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp1/FIG/T1-image-rot-white}
+  \includegraphics[height=2.3cm]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp1/FIG/ernie-volume-64}
+  \includegraphics[height=2.3cm]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp1/FIG/soltn-t30-crop}
+  \end{center}
   \begin{description}
-    \item[Lecture 1-2]
+    \item[Lecture 1-2] Quick start: From brain MRI to FEM
       \begin{itemize}
       \item
         Why simulate the brain's waterscape?
       \item
-        Where can I find the slides (, book, data, and scripts)?
+        Where can I find the slides (and book, data, and scripts)?
       \item
         Introduction to brain physiology and imaging
         %% \begin{enumerate}{\roman}
@@ -154,18 +195,23 @@
         %%   A numerical simulation of diffusion
         %% \end{itemize}
       \end{itemize}
-    \item[Lecture 3-4]
-    \item[Lecture 5-6]
+    \item[Lecture 3-4] Meshing hemispheres, brains, ventricles, parcellations
+    \item[Lecture 5-6] Introducing anisotropy and heterogeneities (DTI)
   \end{description}
-
-%\end{enumerate}
 \end{frame}
 
 \mysection{Lecture series resources}
 
 \begin{frame}
+  \frametitle{These slides and other lecture material are openly available via GitHub}
+  \centering
+  \includegraphics[width=\textwidth]{graphics/mri2fem-lectures-github.png} \\
+  \refer{\href{https://github.com/meg-simula/mri2fem-lectures}{https://github.com/meg-simula/mri2fem-lectures}}
+\end{frame}
+
+\begin{frame}
   \frametitle{Mathematical modeling of the human brain -- book available on GitHub}
-  \framesubtitle{Simula SpringerBrief on Computing to be}
+  \framesubtitle{by KA Mardal, ME Rognes, TB Thompson and LM Valnes; Simula SpringerBrief on Computing (2021)}
   \centering
   \includegraphics[width=\textwidth]{graphics/mri2fem-book-github.png} \\
   \refer{\href{https://github.com/kent-and/mri2fem}{https://github.com/kent-and/mri2fem}}
@@ -173,7 +219,7 @@
 
 
 \begin{frame}
-  \frametitle{Data and software available on Zenodo}
+  \frametitle{Resources (data, software) are openly available with our Zenodo community}
   \vspace{-0.5em}
   \centering
   \includegraphics[width=0.85\textwidth]{graphics/mri2fem-zenodo.png} \\
@@ -181,13 +227,8 @@
   \refer{\href{https://zenodo.org/communities/mri2fem/}{https://zenodo.org/communities/mri2fem/}}
 \end{frame}
 
-
-\begin{frame}
-  \frametitle{Slides and lecture material available on GitHub}
-  \centering
-  \includegraphics[width=\textwidth]{graphics/mri2fem-lectures-github.png} \\
-  \refer{\href{https://github.com/meg-simula/mri2fem-lectures}{https://github.com/meg-simula/mri2fem-lectures}}
-\end{frame}
+% 10 min
+% ---------------------------------------------------------------------------------------
 
 %-------------------------------------------------------------------------------
 %
@@ -198,48 +239,73 @@
 
 \mysection{The brain's waterscape: anatomy}
 
+\input{/home/meg/presentations/slides/waterscape_anatomy.tex}
+
 \begin{frame}
-  \frametitle{Brain anatomy: macro-scale}
+  \frametitle{Brain vasculature and paravascular spaces}
+  \vspace{-1em}
+  \begin{columns}[c]
+      \begin{column}{0.4\textwidth}
+      \begin{center}
+        \includegraphics[width=0.9\textwidth]{graphics/uludag_et_al_2018_fig2.jpg} \\
+        \includegraphics[width=0.9\textwidth]{graphics/mestre_mori_nedergaard_2020_fig2.jpg}
+      \end{center}
+      \end{column}
+      \begin{column}{0.6\textwidth}
+      \begin{center}
+        \includegraphics[width=0.95\textwidth]{graphics/kaufmanfrancis_et_al_2018_fig1.jpg}
+      \end{center}
+      \end{column}
+  \end{columns}
+  \refer{\href{https://doi.org/10.1016/j.neuroimage.2017.02.063}{Uludag et al (2018) (Fig.~2)}; \href{https://doi.org/10.1016/j.tins.2020.04.003}{Mestre, Mori and Nedergaard (2020) (Fig.~2)}; \href{https://doi.org/10.1016/j.ajpath.2018.03.015}{Kaufman-Francis et al (2018) (Fig.~1)}}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Brain anatomy: meso-scale}
-\end{frame}
+  \frametitle{Brain anatomy at the cellular level}
+  \vspace{-2em}
+  \begin{columns}[t]
+      \begin{column}{0.6\textwidth}
+      \begin{center}
+        \includegraphics[width=0.8\textwidth]{graphics/cells_illustration.png}
+      \end{center}
+      \end{column}
+      \begin{column}{0.4\textwidth}
+      \begin{center}
+        \includegraphics[width=\textwidth]{/home/meg/presentations/slides/graphics/holter2017Fig1.png}
+      \end{center}
+      \end{column}
+  \end{columns}
+  \refer{\href{http://sm.stanford.edu/archive/stanmed/2009fall/article6.html}{Stanford Medicine (2009)};
+    \href{https://doi.org/10.1073/pnas.1706942114}{Holter et al (2017) (Fig~1)}}
+ \end{frame}
 
-\begin{frame}
-  \frametitle{Brain anatomy: micro-scale}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Magnetic resonance imaging}
-\end{frame}
 
 \mysection{The brain's waterscape: physiology}
 
+\input{/home/meg/presentations/slides/waterscapes_lymphatics_short.tex}
+
+\input{/home/meg/presentations/slides/waterscape_diffusion.tex}
+
+{\usebackgroundtemplate{\hspace{1em} \includegraphics[width=0.95\paperwidth]{graphics/glymphatic.jpg}}
 \begin{frame}
-  \frametitle{Diffusion}
+  \vspace{1em}
+  The glymphatic pathway is a \\ brain fluid-clearance pathway theory
+  \vspace{18em}
+  \refer{\href{https://stm.sciencemag.org/content/4/147/147ra111.full}{Iliff et al (2012)}; \href{https://doi.org/10.1016/S1474-4422(18)30318-1}{Rasmussen et al (2018) (Fig.~1)}}
 \end{frame}
+}
 
 \begin{frame}
-  \frametitle{Glymphatics}
+  \begin{center}
+    \includegraphics[width=\textwidth]{graphics/abbott_2018.png}
+  \end{center}
 \end{frame}
 
-\begin{frame}
-  \frametitle{iPAD}
-\end{frame}
+\input{/home/meg/presentations/slides/amyloid_tau.tex}
+%\input{/home/meg/presentations/slides/waterscape_dementia_aggregations.tex}
 
-\begin{frame}
-  \frametitle{Controversies and questions}
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{Neurodegenerative disease}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Sleep}
-\end{frame}
+\input{/home/meg/presentations/slides/waterscape_sleep_xie.tex}
+\input{/home/meg/presentations/slides/waterscapes_alzheimers.tex}
 
 \begin{frame}
   \frametitle{Alcohol}
@@ -249,36 +315,110 @@
   \frametitle{Exercise}
 \end{frame}
 
-\mysection{Introduction to brain magnetic resonance imaging (MRI)}
+\mysection{A very brief introduction to magnetic resonance imaging (MRI)}
 
 \begin{frame}
-  \frametitle{Magnetic resonance imaging: T1 vs T2}
+  \frametitle{T1-weighted MRI reveals brain structure}
+  \begin{center}
+  \includegraphics[height=0.52\textheight]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp2/FIG/T1-image.png}
+  \includegraphics[height=0.52\textheight]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp2/FIG/exp-brain.png}
+  \includegraphics[height=0.52\textheight]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp2/FIG/exp-matters.png}
+  \end{center}
+  %% \caption{MR images (T1) of the human brain. Left: A sagittal
+  %%   (longitudinal) cross-section of the human brain with the cerebrum
+  %%   in blue, the cerebellum in red, and brain stem in yellow. Right: A
+  %%   coronal (frontal) section of the brain. The tissue matter
+  %%   composition of the cerebrum has been marked by color: red marking
+  %%   the cortical gray matter, blue marking the subcortical gray matter
+  %%   and white marking the white matter. (The colors have been added in
+  %% post-processing.)}
+
+  Axial, sagittal and coronal cross-sections. T1 MRI: fat gives high
+  signal intensity (light/white); fluids give low signal intensity
+  (dark/black).
 \end{frame}
 
 \begin{frame}
-  \frametitle{Magnetic resonance imaging: DTI}
+  \frametitle{T2-weighted MRI reveals brain structure and fluids}
+\begin{figure}
+  \centering
+  \includegraphics[height=0.7\textheight]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp2/FIG/T1-image.png}
+  \hspace{2em}
+  \includegraphics[height=0.7\textheight]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp2/FIG/T2-image.png}
+  %% \caption{T1 weighted image (left) versus T2 weighted image (right).
+  %%   In the T1 weighted image, white matter is recognized in the light
+  %%   gray color, whereas the darker gray color that surface the brain
+  %%   is gray matter. T1 weighted images is used in particular as it has
+  %%   a sharp contrast between gray and white matter.  The T2 weighted
+  %%   images shows the CSF as almost white and provides good contrast
+  %%   between the CSF and the brain, but less contrast between white and
+  %%   gray matter.}
+\end{figure}
+T1 (left) versus T2 (right). In T2 MRI: fluids gives high signal intensity (light/white)
 \end{frame}
 
 \begin{frame}
-  \frametitle{Viewing and working with MRI data sets}
+  \frametitle{Diffusion-tensor MRI reveals water movement and directionality}
+  \begin{center}
+  \includegraphics[width=0.4\textwidth]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp2/FIG/DTI-slice-image-crop.png}
+  \hspace{2em}
+  \includegraphics[width=0.4\textwidth]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp5/FIG/fiber-fa-2.png}
+  \end{center}
+  In DTI: high signal intensity indicates high degree of anisotropy 
 \end{frame}
 
 \begin{frame}
-  \frametitle{DicomBrowser and example}
+  \frametitle{Viewing and working with MRI data sets in DICOM format}
+
+  Medical images are often stored in the DICOM file format: a
+  collection of image files arranged in sequences. A DICOM viewer is
+  essential for working with DICOM files.
+
+  \bigskip
+  
+  Many possibilities including \href{https://wiki.xnat.org/xnat-tools/dicombrowser}{DicomBrowser}
+
+  \bigskip
+  
+  \terminal{\$ sudo apt-get install dicombrowser \hfill(my Ubuntu 18.04)\\
+  \$ DicomBrowser \&}
 \end{frame}
+
+\videosection{Video example: downloading and viewing the MRI2FEM DICOM data set}{http://zenodo.org}
 
 \mysection{A software ecosystem: from MRI to finite elements}
 
 \begin{frame}
 \frametitle{Illustration of pipeline}
+
+  \begin{center}
+  \includegraphics[height=2.3cm]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp1/FIG/T1-image-rot-white}
+  \includegraphics[height=2.3cm]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp1/FIG/ernie-volume-64}
+  \includegraphics[height=2.3cm]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp1/FIG/soltn-t30-crop}
+  \end{center}
+
 \end{frame}
 
 \begin{frame}
-\frametitle{Packages and installation}
-\end{frame}
+\frametitle{Recommended software components}
 
-\begin{frame}
-\frametitle{Book Chapter 2, Docker image}
+\begin{itemize}
+\item
+  Python3 for everything
+\item
+  FreeSurfer for segmentation: \href{https://surfer.nmr.mgh.harvard.edu/}{https://surfer.nmr.mgh.harvard.edu/}
+\item
+  NiBabel for image manipulations: \href{https://nipy.org/nibabel/}{https://nipy.org/nibabel/}
+\item
+  SVM-Tk for meshing: \href{https://github.com/SVMTK/SVMTK}{https://github.com/SVMTK/SVMTK}
+\item
+  meshio for mesh conversions: \href{https://github.com/nschloe/meshio}{https://github.com/nschloe/meshio}
+\item
+  FEniCS for finite elements : \href{https://fenicsproject.org/}{https://fenicsproject.org/}
+\item
+  ParaView for visualization: \href{https://www.paraview.org/}{https://www.paraview.org/}
+\end{itemize}
+
 \end{frame}
 
 %-------------------------------------------------------------------------------
@@ -337,8 +477,27 @@ follow three main steps:
 \frametitle{Numerical results}
 \end{frame}
 
-
 \mysection{Video samples}
+
+\mysection{Lecture 1-2 home work}
+
+\begin{frame}
+\frametitle{Lecture 1-2 home work}
+\begin{enumerate}
+\item
+  Download the slides from this lecture:  \href{https://github.com/meg-simula/mri2fem-lectures}{https://github.com/meg-simula/mri2fem-lectures}
+\item
+  Download the MRI2FEM data set and software from Zenodo and inspect
+  the contents using the tools discussed
+\item
+  Download the book
+\item
+  Install software dependencies following the instructions in the book (Chapter 2)
+\item
+  Try running some of the sample code in book Chapter 3
+\end{enumerate}
+How did it go? Mail me relevant images (meg@simula.no) before next week! 
+\end{frame}
 
 %-------------------------------------------------------------------------------
 
