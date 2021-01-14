@@ -27,13 +27,13 @@ These lectures assume that you, the reader or audience, have
 * No to some knowledge of brain physiology and imaging
 * Knowledge of/Interest in using command-line tools
 
-The FEniCS tutorial by Langtangen and Logg (2016) is a very good
-introduction to all of the above. (Note however that some of the code
-examples there are outdated.)
+[The FEniCS tutorial](https://fenicsproject.org/tutorial/) by
+Langtangen and Logg (2017) is a very good introduction to all of the
+above. 
 
 ## YouTube resources  ##
 
-Tutorial video snippets are posted on [my YouTube channel](https://youtube.com/playlist?list=PL2H4xO8DvXwVNy7EelY_TuYUgvQ4Dw_Lz) and include:
+Tutorial video snippets are posted on [my mri2fem YouTube channel](https://youtube.com/playlist?list=PL2H4xO8DvXwVNy7EelY_TuYUgvQ4Dw_Lz) and include:
 
 1. Downloading the MRI2FEM data set, viewing and extracting MR series
    using DICOM Browser
