@@ -8,16 +8,16 @@ lectures are given online via Zoom on Jan 15, 22 and 29 at 14-16 CET.
 
 I will roughly follow the following schedule each week:
 
-14:05-14:45: Lecture (Part 1)
-14:45-14:55: Break
-14:55-15:00: Questions 
-15:00-15:45: Lecture (Part 2)
-15:45-15:55: Answering more questions 
+- 14:00-14:45: Lecture
+- 14:45-14:55: Break
+- 14:55-15:00: Questions
+- 15:00-15:45: Lecture
+- 15:45-15:55: More questions 
 
 Please post questions in the chat. I will address questions from the
 chat after the break and at the end.
 
-## Prior knowledge  ##
+## Prior knowledge ##
 
 These lectures assume that you, the reader or audience, have
 
@@ -33,6 +33,8 @@ examples there are outdated.)
 
 ## YouTube resources  ##
 
+Tutorial video snippets are posted on [my YouTube channel](https://youtube.com/playlist?list=PL2H4xO8DvXwVNy7EelY_TuYUgvQ4Dw_Lz) and include:
+
 1. Downloading the MRI2FEM data set, viewing and extracting MR series
    using DICOM Browser
 2. Viewing the FreeSurfer output
@@ -44,6 +46,6 @@ examples there are outdated.)
 These lectures are given via two devices: one laptop (screen) mainly
 used for seeing the audience and the chat; an iPad and iPencil running
 Goodnotes for showing slides with easy annotation, following links to
-online material (Zenodo, Github) including videos from Youtube. 
+online material (Zenodo, Github) including videos from YouTube. 
 
 Do a practice run of each lecture in before-hand.
