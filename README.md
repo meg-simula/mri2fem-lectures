@@ -1,6 +1,6 @@
 # About these lectures #
 
-This is a series of lectures given as part of the University of
+This is a series of guest lectures given as part of the University of
 Bergen's Porous Media Short Course Series in the Spring of 2021. The
 lectures are given online via Zoom.
 
