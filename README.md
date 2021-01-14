@@ -1,29 +1,25 @@
-** Lecture setup **
+# About these lectures #
 
-These lectures will be delivered
+This is a series of lectures given as part of the University of
+Bergen's Porous Media Short Course Series in the Spring of 2021. The
+lectures will be given online via Zoom. 
 
-- [] via Zoom
-
-- [] via two devices:
-     (1) Laptop: for
-         (i) seeing the audience and
-
-     (2) iPad/Goodnotes: for
-         (i) showing slides locally with easy annotation and
-         (ii) following links to online material (Zenodo, GitHut)
-         (iii) ... including video-recorded laptop demonstrations (YouTube)
-
-- [] Do a practice run of each lecture (2h) the evening before.
-
-** Assumptions on the audience **
+## Prior knowledge  ##
 
 These lectures assume that you, the reader or audience, have
 
-- [] Some knowledge of partial differential equations (PDEs) and
-     finite element methods (FEM);
+* Some knowledge of partial differential equations (PDEs) and finite
+  element methods (FEM);
+* Some knowledge of programming (Python, bash);
+* No to some knowledge of brain physiology and imaging;
+* Knowledge of/Interest in using command-line tools.
 
-- [] Some knowledge of programming (Python, bash);
+## Tips for lecturing via Zoom ##
 
-- [] No to some knowledge of brain physiology and imaging;
+These lectures are given via two devices: one laptop (screen) mainly
+used for seeing the audience and the chat; an iPad and iPencil running
+Goodnotes for showing slides with easy annotation, following links to
+online material (Zenodo, Github) including videos from Youtube. 
 
-- [] Knowledge of/Interest in using command-line tools.
+Do a practice run of each lecture in before-hand.
+
