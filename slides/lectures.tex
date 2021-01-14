@@ -57,7 +57,7 @@
 \newcommand{\duality}[2]{\langle #1, #2 \rangle}
 
 \newcommand{\mysection}[1]{\begin{frame} \begin{center} \vspace{3em} \textbf{#1} \end{center} \end{frame}}
-\newcommand{\videosection}[2]{\begin{frame} \begin{center} \vspace{3em} \href{#2}{\textcolor{rognesred}{\textbf{#1}}} \end{center} \end{frame}}
+\newcommand{\videosection}[3]{\begin{frame} \begin{center} \vspace{3em} \href{#2}{\textcolor{rognesred}{\textbf{#1}}} \end{center} #3 \end{frame}}
 \newcommand{\sectionwithrefer}[2]{\begin{frame} \begin{center} \vspace{3em} \textbf{#1} \end{center} \refer{#2} \end{frame}}
 
 \newtheorem{prop}[theorem]{Proposition}
@@ -184,7 +184,7 @@
         %%   A software ecosystem: from MRI to finite elements
         %% \end{enumerate}
       \item
-        From T1 MRI images to numerical simulation
+        From T1w MRI images to numerical simulation
         %% \begin{itemize}
         %% \item
         %%   A model problem: diffusion of solutes
@@ -306,7 +306,6 @@
 \end{frame}
 
 \input{/home/meg/presentations/slides/amyloid_tau.tex}
-%\input{/home/meg/presentations/slides/waterscape_dementia_aggregations.tex}
 
 \input{/home/meg/presentations/slides/waterscape_sleep_xie.tex}
 \input{/home/meg/presentations/slides/waterscapes_alzheimers.tex}
@@ -328,16 +327,8 @@
   \includegraphics[height=0.52\textheight]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp2/FIG/exp-brain.png}
   \includegraphics[height=0.52\textheight]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp2/FIG/exp-matters.png}
   \end{center}
-  %% \caption{MR images (T1) of the human brain. Left: A sagittal
-  %%   (longitudinal) cross-section of the human brain with the cerebrum
-  %%   in blue, the cerebellum in red, and brain stem in yellow. Right: A
-  %%   coronal (frontal) section of the brain. The tissue matter
-  %%   composition of the cerebrum has been marked by color: red marking
-  %%   the cortical gray matter, blue marking the subcortical gray matter
-  %%   and white marking the white matter. (The colors have been added in
-  %% post-processing.)}
 
-  Axial, sagittal and coronal cross-sections. T1 MRI: fat gives high
+  Axial, sagittal and coronal cross-sections. T1w MRI: fat gives high
   signal intensity (light/white); fluids give low signal intensity
   (dark/black).
 \end{frame}
@@ -349,16 +340,8 @@
   \includegraphics[height=0.7\textheight]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp2/FIG/T1-image.png}
   \hspace{2em}
   \includegraphics[height=0.7\textheight]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp2/FIG/T2-image.png}
-  %% \caption{T1 weighted image (left) versus T2 weighted image (right).
-  %%   In the T1 weighted image, white matter is recognized in the light
-  %%   gray color, whereas the darker gray color that surface the brain
-  %%   is gray matter. T1 weighted images is used in particular as it has
-  %%   a sharp contrast between gray and white matter.  The T2 weighted
-  %%   images shows the CSF as almost white and provides good contrast
-  %%   between the CSF and the brain, but less contrast between white and
-  %%   gray matter.}
 \end{figure}
-T1 (left) versus T2 (right). In T2 MRI: fluids gives high signal intensity (light/white)
+T1w (left) versus T2w (right). In T2w MRI: fluids gives high signal intensity (light/white)
 \end{frame}
 
 \begin{frame}
@@ -376,11 +359,11 @@ T1 (left) versus T2 (right). In T2 MRI: fluids gives high signal intensity (ligh
 
   Medical images are often stored in the DICOM file format: a
   collection of image files arranged in sequences. A DICOM viewer is
-  essential for working with DICOM files.
+  useful for working with DICOM files.
 
   \bigskip
   
-  Many possibilities including \href{https://wiki.xnat.org/xnat-tools/dicombrowser}{DicomBrowser}
+  Many possibilities including the basic \href{https://wiki.xnat.org/xnat-tools/dicombrowser}{DicomBrowser}
 
   \bigskip
   
@@ -388,20 +371,9 @@ T1 (left) versus T2 (right). In T2 MRI: fluids gives high signal intensity (ligh
   \$ DicomBrowser \&}
 \end{frame}
 
-\videosection{Video example: downloading and viewing the MRI2FEM DICOM data set}{http://zenodo.org}
+\videosection{Video example: downloading and viewing the mri2fem DICOM data set}{https://youtu.be/gvc1owRl-zA}
 
 \mysection{A software ecosystem: from MRI to finite elements}
-
-\begin{frame}
-\frametitle{Illustration of pipeline}
-
-  \begin{center}
-  \includegraphics[height=2.3cm]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp1/FIG/T1-image-rot-white}
-  \includegraphics[height=2.3cm]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp1/FIG/ernie-volume-64}
-  \includegraphics[height=2.3cm]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp1/FIG/soltn-t30-crop}
-  \end{center}
-
-\end{frame}
 
 \begin{frame}
 \frametitle{Recommended software components}
@@ -423,14 +395,14 @@ T1 (left) versus T2 (right). In T2 MRI: fluids gives high signal intensity (ligh
   ParaView for visualization: \href{https://www.paraview.org/}{https://www.paraview.org/}
 \end{itemize}
 
-\end{frame}
+  \begin{center}
+  \includegraphics[height=2.3cm]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp1/FIG/T1-image-rot-white}
+  \includegraphics[height=2.3cm]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp1/FIG/ernie-volume-64}
+  \includegraphics[height=2.3cm]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp1/FIG/soltn-t30-crop}
+  \end{center}
 
-%-------------------------------------------------------------------------------
-%
-% Lecture 2
-% \input{lecture2.tex}
-%
-%-------------------------------------------------------------------------------
+
+\end{frame}
 
 \mysection{A model problem: diffusion of solutes}
 
@@ -458,7 +430,7 @@ T1 (left) versus T2 (right). In T2 MRI: fluids gives high signal intensity (ligh
 \mysection{From T1 images to a finite element mesh}
 
 \begin{frame}
-\frametitle{Follow these three steps to generate a mesh from T1 images}
+\frametitle{We follow these three steps to generate a mesh from T1 images}
 
 To generate a mesh from an MRI data set including T1-weighted images,
 we follow three main steps:
@@ -468,18 +440,17 @@ we follow three main steps:
   extract a T1-weighted image series from the MRI dataset using DicomBrowser;
 \item
   create (boundary) surfaces from the T1-weighted images using FreeSurfer;
-\item
-  generate a volume mesh of the interior using FreeSurfer along with SVM-Tk.
+\item 
+  generate a volume mesh of the interior of these using SVM-Tk.
 \end{enumerate}
 \end{frame}
-
-\videosection{Video example: extracting MR series using DicomBrowser}{}
 
 \begin{frame}
 \frametitle{Step 2: Using FreeSurfer to segment images and create surfaces}
 
-FreeSurfer offers the command \emp{recon-all} to segment the brain images
-and reconstruct surfaces. 
+FreeSurfer offers the command \emp{recon-all} to segment the brain
+images and reconstruct surfaces (parcellations, pial surface, white
+matter surface etc.)
 
 \terminal{\$ cd mri2fem-dataset \\
 \$ cd dicom/ernie/T13D \\
@@ -488,7 +459,7 @@ and reconstruct surfaces.
 This command is compute-intensive, with run times likely of 12--24
 hours.
 
-Key outputs (\emp{mri2fem-dataset/freesurfer/ernie}). are 
+Key outputs (\emp{mri2fem-dataset/freesurfer/ernie}) are 
 \begin{itemize}
 \item \emp{/stats}: contains files providing statistics derived during segmentation.
 \item \emp{/mri}: contains volume files generated during segmentation
@@ -496,16 +467,14 @@ Key outputs (\emp{mri2fem-dataset/freesurfer/ernie}). are
 \end{itemize}
 \end{frame}
 
-\begin{frame}
-\frametitle{FreeSurfer generates pial and white/gray matter surfaces}
-
-\terminal{\$ cd mri2fem-dataset/freesurfer/ernie/surf\\
+\videosection{Video example: viewing the FreeSurfer output}{https://youtu.be/Svz3kYfsCQo}
+{\terminal{\$ cd mri2fem-dataset/freesurfer/ernie/surf \\
+\$ freeview \# Open lh.pial \\
+\$ \\
 \$ mris\_convert ./lh.pial pial.stl \\
-\$ paraview}
+\$ paraview \# Open lh.pial.stl}
+}
 
-\end{frame}
-
-\videosection{Video example: viewing the FreeSurfer output}{}
 
 \begin{frame}
 \frametitle{The surfaces may need enhancement to be suitable for finite element meshes}
@@ -539,12 +508,11 @@ In practice, brain surfaces generated from T1 images
 
 
 \begin{frame}
-  \frametitle{SVM-Tk includes utilities for remeshing surfaces}
+  \frametitle{SVM-Tk (wrapping CGAL) includes utilities for remeshing surfaces}
   \centering
   \includegraphics[width=0.49\textwidth]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp3/FIG/raw-stlmesh.png}
   \includegraphics[width=0.49\textwidth]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp3/FIG/remesh-stlmesh.png}
-  %\caption{Original (left) pial surface and (right) after remeshing with \svmtk{}}
-  \refer{Mardal et al (2021, Chapter 3.2.1); mri2fem/chp3/remesh\_surface.py}
+  \refer{Mardal et al (2021, Chapter 3.2.1); \href{https://github.com/kent-and/mri2fem/blob/master/mri2fem/mri2fem/chp3/remesh_surface.py}{mri2fem/chp3/remesh\_surface.py}}
 \end{frame}
 
 
@@ -561,7 +529,7 @@ after over-smoothing.
   \end{figure}
   \bigskip
   
-  \refer{Mardal et al (2021, Chapter 3.2.2); mri2fem/chp3/smooth\_surface.py}
+  \refer{Mardal et al (2021, Chapter 3.2.2); \href{https://github.com/kent-and/mri2fem/blob/master/mri2fem/mri2fem/chp3/smooth_surface.py}{mri2fem/chp3/smooth\_surface.py}}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -593,15 +561,15 @@ def create_volume_mesh(stlfile, output, n=16):
 # Create mesh    
 create_volume_mesh("lh.pial.stl", "lh.mesh")
   \end{python}
-  \refer{Mardal et al (2021, Chapter 3.1.3); mri2fem/chp3/surface\_to\_mesh.py}
+  \refer{Mardal et al (2021, Chapter 3.1.3); \href{https://github.com/kent-and/mri2fem/blob/master/mri2fem/mri2fem/chp3/surface_to_mesh.py}{mri2fem/chp3/surface\_to\_mesh.py}}
 \end{column}
 \end{columns}
 
 \end{frame}
 
-\videosection{Video example: creating a mesh of the left hemisphere}{}
+\videosection{Video example: creating a mesh of the left hemisphere}{https://youtu.be/tHGmzPqiYhQ}
 
-\mysection{A numerical simulation of diffusion}
+\mysection{Numerical simulation of diffusion over the left hemisphere}
 
 \begin{frame}
 \frametitle{Solving the diffusion equation with implicit Euler and finite elements (I)}
@@ -643,7 +611,7 @@ and obtain:
 
 
 \begin{frame}
-  \frametitle{Solving the diffusion equation with implicit Euler and finite elements (II)}
+  \frametitle{Solving the diffusion equation with implicit Euler and finite elements (II-)}
 
   \begin{equation*}
     \frac{1}{\tau_n} (u^n - u^{n-1}) - \Div D \Grad u^n = f(t^n) \quad \text{in } \Omega. 
@@ -686,7 +654,7 @@ and obtain:
   \begin{equation*}
     \inner{u}{\phi} = \int_{\Omega} u \, \phi \dx.
   \end{equation*}
-    \refer{The FEniCS tutorial (2016); Mardal et al (2021, Chapter 3.3.3); mri2fem/chp3/diffusion.py}
+    \refer{The FEniCS tutorial (2016); Mardal et al (2021, Chapter 3.3.3); \href{https://github.com/kent-and/mri2fem/blob/master/mri2fem/mri2fem/chp3/diffusion.py}{mri2fem/chp3/diffusion.py}}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -731,29 +699,20 @@ for n in range(1, N+1):
         \imagetop{48h}& \imagetop{\includegraphics[width=0.35\textwidth]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp3/FIG/mri-tracer/48h}}&
         \imagetop{72h}& \imagetop{\includegraphics[width=0.35\textwidth]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp3/FIG/mri-tracer/72h}}
       \end{tabular}
-      %% \caption{Simulated tracer concentration at given times (2, 6, 12,
-      %%   24, 48, 72h) post injection into subarachnoid CSF. Blue
-      %%   represents lower values, while yellow represents higher values.}
     \end{figure}
   \end{column}
   \begin{column}{0.4\textwidth}
     \centering
     \includegraphics[width=0.9\textwidth]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp3/FIG/amounts.png} \\
     \includegraphics[width=0.9\textwidth]{/home/meg/papers/current/hikeandsurf/Book/chapters/chp3/FIG/concentrations.png}
-    %    \caption{Plots of quantities of interest associated with the
-    %  computed concentration solution: total amount of solute $Q$ over
-    %  time $t$ (left) and concentration of solution $u(p, t)$ for a
-    %  given point $p$ over time $t$ (right).}
-    %\label{fig:chp3:png-plots}
   \end{column}
 \end{columns}
 
 \end{frame}
 
-\videosection{Video example: simulating diffusion}{}
+\videosection{Video example: simulating diffusion using FEniCS}{https://youtu.be/zs_vcLFfPFk}
 
-
-\mysection{Until next week ...}
+\mysection{Igor, bring me the brain!}
  
 \begin{frame}
 \frametitle{Want to give it a try? Natural first steps:}
@@ -761,7 +720,7 @@ for n in range(1, N+1):
 \item
   Download the slides from this lecture:  \href{https://github.com/meg-simula/mri2fem-lectures}{https://github.com/meg-simula/mri2fem-lectures}.
 \item
-  Download the MRI2FEM data set and software from Zenodo and inspect
+  Download the mri2fem data set and software from Zenodo and inspect
   the contents using the tools discussed.
 \item
   Download the book: Mardal et al (2021): \href{https://github.com/kent-and/mri2fem}{https://github.com/kent-and/mri2fem}.
@@ -771,6 +730,8 @@ for n in range(1, N+1):
 \item
   Try running some of the sample code in Chapter 3 of Mardal et al
   (2021).
+\item
+  Simulate something other than diffusion? Give it a try!
 \end{enumerate}
 \end{frame}
 
