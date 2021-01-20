@@ -1,0 +1,395 @@
+% For compatibility with acroread version 
+\pdfminorversion=4
+
+\documentclass[mathserif, aspectratio=169]{beamer}
+\mode<presentation>
+
+%\usefonttheme[onlymath]{serif}
+\usepackage[T1]{fontenc}
+%\usepackage{tgheros}
+%\usepackage{tgadventor}
+%\usepackage{libertine}
+%\usepackage{theinhart}
+%\usepackage{palatino}
+%\usepackage{newtxtext} %Times font only for text
+
+% Use my theme
+\usetheme{rognes}
+
+% Used for image placement
+\def\imagetop#1{\vtop{\null\hbox{#1}}}
+
+% Misc packages
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{stmaryrd}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usetikzlibrary{arrows,shapes,backgrounds,decorations,mindmap,patterns,snakes}
+\usepackage{amsmath, amssymb, amsthm, amscd}
+\usepackage[english]{babel}
+\usepackage{algorithm}
+\usepackage{pythonhighlight}
+\usepackage{epstopdf}
+\usepackage{multimedia}
+\usepackage{soul}
+
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\Div}{\mathrm{div}}
+\DeclareMathOperator{\Curl}{\mathrm{curl}}
+\DeclareMathOperator{\Grad}{\mathrm{grad}}
+\DeclareMathOperator{\D}{d}
+\newcommand{\foralls}{\forall \;}
+\newcommand{\iinner}[2]{\llangle #1, #2 \rrangle}
+\newcommand{\inner}[2]{\langle #1,  #2\rangle}
+\newcommand{\totald}{\mathrm{d}}
+\newcommand{\refer}[1]{\begin{flushright}{\tiny \textcolor{darkgray}{[#1]}}\end{flushright}}
+\newcommand{\referinline}[1]{{\tiny \textcolor{darkgray}{[#1]}}}
+\newcommand{\ddt}[1]{{#1}_t}
+\newcommand{\Mi}{M_i}
+\newcommand{\Me}{M_e}
+\newcommand{\Iion}{I_{\rm{ion}}}
+\newcommand{\dx}{\, \mathrm{d}x}
+\newcommand{\ds}{\, \mathrm{d} s}
+\newcommand{\triang}{\mathcal{T}}
+\DeclareMathOperator{\trace}{tr}
+\newcommand{\duality}[2]{\langle #1, #2 \rangle}
+
+\newcommand{\mysection}[1]{\begin{frame} \begin{center} \vspace{3em} \textbf{#1} \end{center} \end{frame}}
+\newcommand{\videosection}[3]{\begin{frame} \begin{center} \vspace{3em} \href{#2}{\textcolor{rognesred}{\textbf{#1}}} \end{center} #3 \end{frame}}
+\newcommand{\sectionwithrefer}[2]{\begin{frame} \begin{center} \vspace{3em} \textbf{#1} \end{center} \refer{#2} \end{frame}}
+
+\newtheorem{prop}[theorem]{Proposition}
+
+
+\tikzstyle{na} = [baseline=-.5ex]
+\tikzstyle{every picture}+=[remember picture]
+\everymath{\displaystyle}
+
+\usepackage[small, figurename=,size=scriptsize,font={color=darkgray}]{caption}
+
+
+
+%% \usepackage{listings}
+%% \usepackage[most]{tcolorbox} 	%used for writing process notes, code boxes 
+%% \tcbuselibrary{listings,skins}  % skins needed for code box styles
+%% \usepackage{color}
+%% \usepackage{amsfonts}
+%% \usepackage{fancyvrb}		%provides tab and white space preservation for 
+%% 				%the verbatim environment. Needed for Python
+%% 				%code inclusion
+
+\definecolor{programcode}{gray}{0.65}
+
+\def\formtmpX#1#2{{\vskip3pt\noindent\fboxsep=0pt{\parbox{\textwidth}{\hbox to \textwidth{\hskip3pt\vbox{\raggedright\noindent\textbf{#2\vphantom{Qy}}}\hfill}}}\vskip3pt\par
+\noindent\kern0pt}}
+
+\newenvironment{programcode}[1]{\ignorespaces\def\stmtopen##1{##1}%
+\formtmpX{programcode}{\centerline{\small{#1}}}}{\noindent\textcolor{programcode}{\rule{\columnwidth}{0pt}}\par\addvspace{\baselineskip}}%
+
+
+
+\newcommand{\terminal}[1]{
+  \vspace{-1em}
+  \begin{programcode}{}%{Terminal window}%
+    \colorbox{blue!10}{\parbox{0.98\textwidth}{\textcolor{black}{\texttt{#1}}}}
+  \end{programcode}
+  \vspace{-0.5em}
+}
+
+\newcommand{\emp}[1]{\texttt{#1}}
+
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+
+\DeclareMathOperator{\ssum}{\textstyle \sum}
+
+\begin{document}
+
+%-------------------------------------------------------------------------------
+\cleanpage
+\begin{frame}
+  \begin{columns}
+    \begin{column}{0.25\textwidth}
+    \centering
+    \vspace{1em}
+    \includegraphics[width=\textwidth]{graphics/simula_logo_main_RGB.pdf} \\
+    \vspace{1em}
+    \includegraphics[width=\textwidth]{graphics/waterscales.pdf}  \\
+    \vspace{1em}
+    \includegraphics[height=0.3\textwidth]{graphics/flag_yellow_low.jpg} 
+    \hspace{0.2em}
+    \includegraphics[width=0.3\textwidth]{graphics/logo-erc.jpg} \\
+    \vspace{1em}
+    \includegraphics[width=0.5\textwidth]{graphics/waterscape_logo.png} \\
+    \vspace{1em}
+    \includegraphics[width=\textwidth]{graphics/rcn-logo.pdf} \\
+    \end{column}
+    \begin{column}{0.75\textwidth}
+    {
+    \centering
+
+      \vspace{4em}
+
+      {\bf Brain modelling: \\ from magnetic resonance images \\ to finite element simulation} \\
+
+      \bigskip
+      \bigskip
+      
+
+      Marie E. Rognes \\
+      \bigskip
+      \bigskip
+
+      Oslo, Norway \\
+      \medskip
+      Jan 15, 22, 29 -- 2021 \\
+      }
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\cleanpage
+
+\begin{frame}
+  \frametitle{Outline of lectures}
+  \begin{center}
+  \includegraphics[height=2.3cm]{/home/meg/papers/current/hikeandsurf/Book/graphics/chp1/T1-image-rot-white}
+  \includegraphics[height=2.3cm]{/home/meg/papers/current/hikeandsurf/Book/graphics/chp1/ernie-volume-64}
+  \includegraphics[height=2.3cm]{/home/meg/papers/current/hikeandsurf/Book/graphics/chp1/soltn-t30-crop}
+  \end{center}
+  \begin{description}
+    \item[Lecture 1-2] Quick start: From brain MRI to FEM
+      \begin{itemize}
+      \item
+        Where can I find the slides (and book, data, and scripts)?
+      \item
+        Introduction to brain physiology and imaging
+      \item
+        From T1w MRI images to numerical simulation
+      \end{itemize}
+    \item[Lecture 3-4] Meshing hemispheres, brains, ventricles, parcellations
+    \item[Lecture 5-6] Introducing anisotropy and heterogeneities (DTI)
+  \end{description}
+\end{frame}
+
+\mysection{The brain as a poroelastic medium}
+
+\input{/home/meg/presentations/slides/waterscape_poroelastic_brain.tex}
+\input{/home/meg/presentations/slides/waterscape_volume_fraction_age.tex}
+\input{/home/meg/presentations/slides/waterscape_volume_fraction_ecs.tex}
+
+\mysection{What do we know of forces at play?}
+
+\input{/home/meg/presentations/slides/waterscapes_respiratory_math_2019.tex}
+
+\begin{frame}
+\frametitle{Baledent}
+
+
+\end{frame}
+
+\mysection{Porous media brain modelling}
+
+\begin{frame}
+  \frametitle{Biot's equations describe displacement and flow in a poroelastic medium}
+  \small
+  \begin{columns}
+  \begin{column}{0.6\textwidth}
+    Find the displacement \only<1-3>{$u = u(x, t)$} and the pressure \only<1-3>{$p = p(x, t)$}
+    over $\Omega \times [0, T]$ such that:
+  \only<1-3> {
+  \begin{subequations}
+    \begin{align*}
+    - \Div \left ( 2 \mu \varepsilon(u) + \lambda \Div u I - p I \right ) &= f, \\
+    c_0 \dot{p} + \Div \dot{u} - \Div K \Grad p &= g
+    \end{align*}
+  \end{subequations}
+  }
+
+\vspace{-0.5em}
+  \visible<2->{
+  \textbf{Low-storage, incompressible regime}: $c_0 = 0$, $\lambda
+    \rightarrow \infty$: $\Div u \rightarrow 0$, system decouples 
+    \begin{align*}
+      - \Div K \Grad p &= g &&\textrm{\alert{(Darcy)}} \\
+      - \Div \left ( 2 \mu \varepsilon(u) + \lambda \Div u \right ) &= f - \Grad p && \textrm{\alert{(Elasticity)}} 
+    \end{align*}
+  }
+
+  \vspace{-0.5em}
+  \visible<3->{
+    \textbf{Low-storage, impermeable regime}: $c_0 = 0$, $K \rightarrow 0$: 
+      \begin{equation*}
+        \begin{split}
+        - \Div \left ( 2 \mu \varepsilon(u) + \lambda \Div u  - p I \right ) &= f, \\
+        \Div u &= 0
+        \end{split}
+        \quad \textrm{\alert{(Stokes)}}
+      \end{equation*}
+      }
+  \end{column}
+  \begin{column}{0.4\textwidth}
+    \centering
+    \includegraphics[width=0.45\textwidth]{/home/meg/presentations/slides/graphics/mouse_u125.png} 
+    \includegraphics[width=0.45\textwidth]{/home/meg/presentations/slides/graphics/mouse_p125.png} \\
+    \vspace{-1em}
+    \includegraphics[width=0.45\textwidth]{/home/meg/presentations/slides/graphics/mouse_v125.png} \\
+
+    \includegraphics[height=0.2\textheight]{/home/meg/presentations/slides/graphics/biot.jpg}
+    %\only<2>{\includegraphics[height=0.2\textheight]{/home/meg/presentations/slides/graphics/firth.jpg}}
+    \visible<2->{\includegraphics[height=0.2\textheight]{/home/meg/presentations/slides/graphics/darcy.jpeg}}
+    \hspace{1em}
+    \visible<3->{\includegraphics[height=0.2\textheight]{/home/meg/presentations/slides/graphics/stokes.jpg}}
+  \end{column}
+  \end{columns}
+  \vspace{-1em}
+  \refer{Biot (1941), Murad, Thom\'ee and Loula (1992-1996), Phillips and Wheeler (2007-2008), and many others}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Stability of saddle point problems}
+  {\small
+    \vspace{-1em}
+    \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \begin{block}{Abstract form}
+      Find $u \in V$ and $p \in Q$ such that
+      \begin{align*}
+        a(u, v) + b(v, p) &= \inner{f}{v} \quad \foralls v \in V \\
+        b(u, q) - c(p, q) &= \inner{g}{q} \quad \foralls q \in Q 
+      \end{align*}
+
+      \begin{equation*}
+      \begin{pmatrix}
+        A & B^T \\
+        B & -C 
+      \end{pmatrix}
+      \begin{pmatrix}
+        u \\
+        p
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+        f \\
+        g
+      \end{pmatrix}
+      \end{equation*}
+      \end{block}
+      \includegraphics[width=\textwidth]{/home/meg/presentations/slides/graphics/saddlepoint.png} 
+      \refer{Ladyzhenskaya (1969),  Babu\v ska (1972), Brezzi (1974)}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+          \vspace{-1em}
+      \textbf{Example: (Time-discrete) Biot}
+        \begin{align*}
+          A u &= - \Div (2 \mu \varepsilon(u) + \lambda \Div u I) \\
+          B u &= - \Div u \\
+          C p &= c_0 p - \Div K \Grad p
+        \end{align*}
+        \visible<2->{
+        \centering
+        \includegraphics[width=0.3\textwidth]{/home/meg/presentations/slides/graphics/cg.png}
+        \includegraphics[width=0.3\textwidth]{/home/meg/presentations/slides/graphics/bdm.png}
+        \begin{block}{Stability conditions}
+        Well-posed problem if $a, b, c$ continuous, $c$ pos. def., and
+        $\exists \, \alpha, \beta > 0$
+        \begin{align*}
+          a(u, u) \geq \alpha \| u \|_V^2 \quad \foralls u \in \mathrm{ker} B \\
+          \inf_{q \in Q} \sup_{v \in V} |b(v, q)| \|v\|_{V}^{-1} \|q\|_{Q}^{-1} \geq \beta 
+        \end{align*}
+      \end{block}
+        \vspace{-1em}
+        }
+    \end{column}
+  \end{columns}
+}
+\end{frame}
+
+\input{/home/meg/presentations/slides/waterscape_mpet_basics.tex}
+
+\input{/home/meg/presentations/slides/waterscape_mpet_quasistatic.tex}
+
+
+\mysection{Finite element methods for MPET}
+
+\begin{frame}
+  \frametitle{Preliminaries for variational formulation of the
+    quasi-static MPET equations}
+
+  \textbf{Boundary conditions:} Let $\Omega \subset \R^d$ with boundary
+  $\partial \Omega$ and $T > 0$. \\ $u = 0$ on $\alert{\Gamma} \subset \partial
+  \Omega$, $\sigma \cdot n \equiv (\sigma^{\ast}(u) - \ssum_{a}
+  \alpha_a p_a I) \cdot n = 0$ on $\partial \Omega - \Gamma \not =
+  \emptyset$ and \\ $p_a = 0$ on $\partial \Omega$ for $a = 1, \dots, A$.
+
+  \medskip
+  
+  \textbf{Initial conditions}: $u(t = 0) = u_0$, $p_a(t = 0) = p_{a,
+    0}$ for $a = 1, \dots, A$ ($c_a > 0$).
+
+  \bigskip
+  
+  \textbf{Function spaces:} Define
+  \begin{equation*}
+    \alert{V} = H^1_{0, \Gamma}(\Omega; \R^d),
+    \quad
+    \alert{Q_0} = L^2(\Omega),
+    \quad
+    \alert{Q_a} = H^1_0(\Omega), \quad a = 1, \dots, A.
+  \end{equation*}
+
+  \bigskip
+
+  \textbf{Weighted inner product and norm:} Let
+  \begin{equation*}
+    \inner{a}{b} \equiv \int_{\Omega} a \cdot b \dx,
+    \quad
+    \inner{a}{b}_{\beta} \equiv \int_{\Omega} \beta a \cdot b \dx,
+    \quad
+    \| a \|_{\beta}^2 \equiv \inner{a}{a}_{\beta}
+    \quad
+    \beta \in \R^{+} .
+  \end{equation*}
+\end{frame}
+
+
+\input{/home/meg/presentations/slides/waterscape_soa_mpet.tex}
+
+\input{/home/meg/presentations/slides/waterscape_total_pressure_short.tex}
+
+\begin{frame}
+  \frametitle{Displacements clearly differ between total pressure and "standard" mixed formulations ($\nu = 0.4999$)}
+  \centering
+  \begin{figure}
+  \includegraphics[width=0.9\textwidth]{/home/meg/presentations/slides/graphics/waterscape_total_pressure.png}
+  \caption{Comparison of displacements computed using the standard and
+    total pressure formulation. Plots of displacement magnitude
+    $|u(x_i, t)|$ versus time $t$, for a set of points $x_0, x_1,
+    x_2$. The computed displacements clearly differ between the two
+    solution methods}
+  \end{figure}
+\end{frame}
+
+\mysection{}
+
+\mysection{}
+
+\mysection{}
+
+\videosection{Video example 1}{}{}
+
+\mysection{Igor, bring me more brains!}
+ 
+\begin{frame}
+\frametitle{Want to give it a try? Natural next steps:}
+\begin{enumerate}
+\item
+\end{enumerate}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+
+\end{document}
