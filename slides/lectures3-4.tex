@@ -1,7 +1,7 @@
 % For compatibility with acroread version 
 \pdfminorversion=4
 
-\documentclass[mathserif, aspectratio=169]{beamer}
+\documentclass[10pt, mathserif, aspectratio=169, t]{beamer}
 \mode<presentation>
 
 %\usefonttheme[onlymath]{serif}
@@ -10,7 +10,7 @@
 %\usepackage{tgadventor}
 %\usepackage{libertine}
 %\usepackage{theinhart}
-%\usepackage{palatino}
+\usepackage{palatino}
 %\usepackage{newtxtext} %Times font only for text
 
 % Use my theme
@@ -160,24 +160,55 @@
   \includegraphics[height=2.3cm]{/home/meg/papers/current/hikeandsurf/Book/graphics/chp1/soltn-t30-crop}
   \end{center}
   \begin{description}
-    \item[Lecture 1-2] Quick start: From brain MRI to FEM
-      \begin{itemize}
+    \item[Lectures 1-2] Quick start: From brain MRI to FEM
+    \item[Lectures 3-4] The poroelastic brain  
+      \begin{enumerate}[I]
       \item
-        Where can I find the slides (and book, data, and scripts)?
+        % Observations and data
+        The brain as a poroelastic medium: properties and forces
       \item
-        Introduction to brain physiology and imaging
+        % Mathematical and numerical modelling
+        Models and numerics for the poroelastic brain at the macroscale
       \item
-        From T1w MRI images to numerical simulation
-      \end{itemize}
-    \item[Lecture 3-4] Meshing hemispheres, brains, ventricles, parcellations
-    \item[Lecture 5-6] Introducing anisotropy and heterogeneities (DTI)
+        % Hands-on meshing
+        From hemispheres to brain meshes and simulations
+      \end{enumerate}
+    \item[Lectures 5-6] Introducing parcellations and anisotropy (DTI)
   \end{description}
 \end{frame}
 
 \mysection{The brain as a poroelastic medium}
 
 \input{/home/meg/presentations/slides/waterscape_poroelastic_brain.tex}
+
+\input{/home/meg/presentations/slides/waterscape_perivascular_mechanism.tex}
+
+\begin{frame}
+\frametitle{Elasticity of the brain}
+\end{frame}
+
+\begin{frame}
+\frametitle{Permeability of the brain}
+
+\begin{itemize}
+\item
+  What is chosen as the pore network(s): ECS, paravascular spaces
+\item
+  In the literature
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Permeability of the extracellular space}
+
+\begin{itemize}
+\item
+  Estimates from Holter et al.
+\end{itemize}
+\end{frame}
+
 \input{/home/meg/presentations/slides/waterscape_volume_fraction_age.tex}
+
 \input{/home/meg/presentations/slides/waterscape_volume_fraction_ecs.tex}
 
 \mysection{What do we know of forces at play?}
@@ -311,8 +342,7 @@
 
 \input{/home/meg/presentations/slides/waterscape_mpet_quasistatic.tex}
 
-
-\mysection{Finite element methods for MPET}
+\mysection{Finite element methods for generalized poroelasticity}
 
 \begin{frame}
   \frametitle{Preliminaries for variational formulation of the
@@ -372,13 +402,92 @@
   \end{figure}
 \end{frame}
 
-\mysection{}
+\mysection{From hemispheres to brain meshes}
 
-\mysection{}
+\mysection{Gray and white matter}
 
-\mysection{}
+\begin{frame}
+\frametitle{Gray and white matter differs substantially in terms of properties}
 
-\videosection{Video example 1}{}{}
+\begin{columns}[T]
+  \begin{column}{0.6\textwidth}
+    {\centering
+    \includegraphics[width=0.8\textwidth]{graphics/gray_vs_white_matter.png}
+    }
+    
+    Brain $\Omega$ is heterogeneous and composed of gray matter
+      $\Omega_g$ and white matter $\Omega_w$.
+
+      \bigskip
+
+      \alert{Example:} Heterogeneous diffusion (permeability,
+      stiffness) tensor
+      \begin{equation*}
+        D =
+        D(x) = \left \{
+        \begin{matrix}
+          D_g & x \in \Omega_g, \\
+          D_w & x \in \Omega_w 
+        \end{matrix}
+        \right .
+      \end{equation*}
+
+  \end{column}
+  \begin{column}{0.4\textwidth}
+      \includegraphics[width=\textwidth]{/home/meg/papers/current/hikeandsurf/Book/graphics/chp2/exp-matters.png}
+  \end{column}
+\end{columns}
+
+\refer{\href{ https://doi.org/10.3389/fncel.2015.00257}{Budday et al (2015)} (Fig 2))}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Creating a gray and white matter mesh from surface segmentation}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{enumerate}
+\item
+  Convert FreeSurfer's pial and white left hemisphere surfaces to STL
+\item
+  Create a mesh conforming to the interior interface using SVM-Tk,
+\item
+  Include labels for the different regions relative to the surfaces
+\end{enumerate}
+\end{column}
+\begin{column}{0.5\textwidth}
+\end{column}
+
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{SVM-Tk subdomain maps}
+\end{frame}
+
+\begin{frame}
+\frametitle{Gray and white matter meshes: results}
+\end{frame}
+
+\videosection{Video example: generating a gray and white matter mesh}{}{}
+
+\mysection{Extracting the ventricular system}
+
+\videosection{Video example 2}{}{}
+
+\mysection{Combining hemispheres}
+
+\videosection{Video example 3}{}{}
+
+\mysection{Poroelastic brain simulations}
+
+\videosection{Video example 4}{}{}
+
+% For Lectures 5-6 I think: 
+
+%\mysection{Parcellations}
+%\videosection{Video example 5}{}{}
 
 \mysection{Igor, bring me more brains!}
  
