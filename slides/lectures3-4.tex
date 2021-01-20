@@ -10,7 +10,7 @@
 %\usepackage{tgadventor}
 %\usepackage{libertine}
 %\usepackage{theinhart}
-\usepackage{palatino}
+\usepackage{helvet}
 %\usepackage{newtxtext} %Times font only for text
 
 % Use my theme
@@ -177,328 +177,308 @@
   \end{description}
 \end{frame}
 
+\graphicspath{{/home/meg/presentations/slidesx/}}
+
 \mysection{The brain as a poroelastic medium}
 
-\input{/home/meg/presentations/slides/waterscape_poroelastic_brain.tex}
-
-\input{/home/meg/presentations/slides/waterscape_perivascular_mechanism.tex}
-
-\begin{frame}
-\frametitle{Elasticity of the brain}
-\end{frame}
-
-\begin{frame}
-\frametitle{Permeability of the brain}
-
-\begin{itemize}
-\item
-  What is chosen as the pore network(s): ECS, paravascular spaces
-\item
-  In the literature
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Permeability of the extracellular space}
-
-\begin{itemize}
-\item
-  Estimates from Holter et al.
-\end{itemize}
-\end{frame}
-
-\input{/home/meg/presentations/slides/waterscape_volume_fraction_age.tex}
-
-\input{/home/meg/presentations/slides/waterscape_volume_fraction_ecs.tex}
-
-\mysection{What do we know of forces at play?}
-
-\input{/home/meg/presentations/slides/waterscapes_respiratory_math_2019.tex}
-
-\begin{frame}
-\frametitle{Baledent}
+\input{/home/meg/presentations/slidesx/brain_poroelasticity.tex}
+\input{/home/meg/presentations/slidesx/brain_pvs_hypotheses.tex}
+\input{/home/meg/presentations/slidesx/brain_ecs_diffusion.tex}
+\input{/home/meg/presentations/slidesx/brain_elasticity.tex}
 
 
-\end{frame}
+%% \input{/home/meg/presentations/slides/waterscape_volume_fraction_age.tex}
 
-\mysection{Porous media brain modelling}
+%% \input{/home/meg/presentations/slides/waterscape_volume_fraction_ecs.tex}
 
-\begin{frame}
-  \frametitle{Biot's equations describe displacement and flow in a poroelastic medium}
-  \small
-  \begin{columns}
-  \begin{column}{0.6\textwidth}
-    Find the displacement \only<1-3>{$u = u(x, t)$} and the pressure \only<1-3>{$p = p(x, t)$}
-    over $\Omega \times [0, T]$ such that:
-  \only<1-3> {
-  \begin{subequations}
-    \begin{align*}
-    - \Div \left ( 2 \mu \varepsilon(u) + \lambda \Div u I - p I \right ) &= f, \\
-    c_0 \dot{p} + \Div \dot{u} - \Div K \Grad p &= g
-    \end{align*}
-  \end{subequations}
-  }
+%% \mysection{What do we know of forces at play?}
 
-\vspace{-0.5em}
-  \visible<2->{
-  \textbf{Low-storage, incompressible regime}: $c_0 = 0$, $\lambda
-    \rightarrow \infty$: $\Div u \rightarrow 0$, system decouples 
-    \begin{align*}
-      - \Div K \Grad p &= g &&\textrm{\alert{(Darcy)}} \\
-      - \Div \left ( 2 \mu \varepsilon(u) + \lambda \Div u \right ) &= f - \Grad p && \textrm{\alert{(Elasticity)}} 
-    \end{align*}
-  }
+%% \input{/home/meg/presentations/slides/waterscapes_respiratory_math_2019.tex}
 
-  \vspace{-0.5em}
-  \visible<3->{
-    \textbf{Low-storage, impermeable regime}: $c_0 = 0$, $K \rightarrow 0$: 
-      \begin{equation*}
-        \begin{split}
-        - \Div \left ( 2 \mu \varepsilon(u) + \lambda \Div u  - p I \right ) &= f, \\
-        \Div u &= 0
-        \end{split}
-        \quad \textrm{\alert{(Stokes)}}
-      \end{equation*}
-      }
-  \end{column}
-  \begin{column}{0.4\textwidth}
-    \centering
-    \includegraphics[width=0.45\textwidth]{/home/meg/presentations/slides/graphics/mouse_u125.png} 
-    \includegraphics[width=0.45\textwidth]{/home/meg/presentations/slides/graphics/mouse_p125.png} \\
-    \vspace{-1em}
-    \includegraphics[width=0.45\textwidth]{/home/meg/presentations/slides/graphics/mouse_v125.png} \\
+%% \begin{frame}
+%% \frametitle{Baledent}
 
-    \includegraphics[height=0.2\textheight]{/home/meg/presentations/slides/graphics/biot.jpg}
-    %\only<2>{\includegraphics[height=0.2\textheight]{/home/meg/presentations/slides/graphics/firth.jpg}}
-    \visible<2->{\includegraphics[height=0.2\textheight]{/home/meg/presentations/slides/graphics/darcy.jpeg}}
-    \hspace{1em}
-    \visible<3->{\includegraphics[height=0.2\textheight]{/home/meg/presentations/slides/graphics/stokes.jpg}}
-  \end{column}
-  \end{columns}
-  \vspace{-1em}
-  \refer{Biot (1941), Murad, Thom\'ee and Loula (1992-1996), Phillips and Wheeler (2007-2008), and many others}
-\end{frame}
 
-\begin{frame}
-  \frametitle{Stability of saddle point problems}
-  {\small
-    \vspace{-1em}
-    \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \begin{block}{Abstract form}
-      Find $u \in V$ and $p \in Q$ such that
-      \begin{align*}
-        a(u, v) + b(v, p) &= \inner{f}{v} \quad \foralls v \in V \\
-        b(u, q) - c(p, q) &= \inner{g}{q} \quad \foralls q \in Q 
-      \end{align*}
+%% \end{frame}
 
-      \begin{equation*}
-      \begin{pmatrix}
-        A & B^T \\
-        B & -C 
-      \end{pmatrix}
-      \begin{pmatrix}
-        u \\
-        p
-      \end{pmatrix}
-      =
-      \begin{pmatrix}
-        f \\
-        g
-      \end{pmatrix}
-      \end{equation*}
-      \end{block}
-      \includegraphics[width=\textwidth]{/home/meg/presentations/slides/graphics/saddlepoint.png} 
-      \refer{Ladyzhenskaya (1969),  Babu\v ska (1972), Brezzi (1974)}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-          \vspace{-1em}
-      \textbf{Example: (Time-discrete) Biot}
-        \begin{align*}
-          A u &= - \Div (2 \mu \varepsilon(u) + \lambda \Div u I) \\
-          B u &= - \Div u \\
-          C p &= c_0 p - \Div K \Grad p
-        \end{align*}
-        \visible<2->{
-        \centering
-        \includegraphics[width=0.3\textwidth]{/home/meg/presentations/slides/graphics/cg.png}
-        \includegraphics[width=0.3\textwidth]{/home/meg/presentations/slides/graphics/bdm.png}
-        \begin{block}{Stability conditions}
-        Well-posed problem if $a, b, c$ continuous, $c$ pos. def., and
-        $\exists \, \alpha, \beta > 0$
-        \begin{align*}
-          a(u, u) \geq \alpha \| u \|_V^2 \quad \foralls u \in \mathrm{ker} B \\
-          \inf_{q \in Q} \sup_{v \in V} |b(v, q)| \|v\|_{V}^{-1} \|q\|_{Q}^{-1} \geq \beta 
-        \end{align*}
-      \end{block}
-        \vspace{-1em}
-        }
-    \end{column}
-  \end{columns}
-}
-\end{frame}
+%% \mysection{Porous media brain modelling}
 
-\input{/home/meg/presentations/slides/waterscape_mpet_basics.tex}
+%% \begin{frame}
+%%   \frametitle{Biot's equations describe displacement and flow in a poroelastic medium}
+%%   \small
+%%   \begin{columns}
+%%   \begin{column}{0.6\textwidth}
+%%     Find the displacement \only<1-3>{$u = u(x, t)$} and the pressure \only<1-3>{$p = p(x, t)$}
+%%     over $\Omega \times [0, T]$ such that:
+%%   \only<1-3> {
+%%   \begin{subequations}
+%%     \begin{align*}
+%%     - \Div \left ( 2 \mu \varepsilon(u) + \lambda \Div u I - p I \right ) &= f, \\
+%%     c_0 \dot{p} + \Div \dot{u} - \Div K \Grad p &= g
+%%     \end{align*}
+%%   \end{subequations}
+%%   }
 
-\input{/home/meg/presentations/slides/waterscape_mpet_quasistatic.tex}
+%% \vspace{-0.5em}
+%%   \visible<2->{
+%%   \textbf{Low-storage, incompressible regime}: $c_0 = 0$, $\lambda
+%%     \rightarrow \infty$: $\Div u \rightarrow 0$, system decouples 
+%%     \begin{align*}
+%%       - \Div K \Grad p &= g &&\textrm{\alert{(Darcy)}} \\
+%%       - \Div \left ( 2 \mu \varepsilon(u) + \lambda \Div u \right ) &= f - \Grad p && \textrm{\alert{(Elasticity)}} 
+%%     \end{align*}
+%%   }
 
-\mysection{Finite element methods for generalized poroelasticity}
+%%   \vspace{-0.5em}
+%%   \visible<3->{
+%%     \textbf{Low-storage, impermeable regime}: $c_0 = 0$, $K \rightarrow 0$: 
+%%       \begin{equation*}
+%%         \begin{split}
+%%         - \Div \left ( 2 \mu \varepsilon(u) + \lambda \Div u  - p I \right ) &= f, \\
+%%         \Div u &= 0
+%%         \end{split}
+%%         \quad \textrm{\alert{(Stokes)}}
+%%       \end{equation*}
+%%       }
+%%   \end{column}
+%%   \begin{column}{0.4\textwidth}
+%%     \centering
+%%     \includegraphics[width=0.45\textwidth]{/home/meg/presentations/slides/graphics/mouse_u125.png} 
+%%     \includegraphics[width=0.45\textwidth]{/home/meg/presentations/slides/graphics/mouse_p125.png} \\
+%%     \vspace{-1em}
+%%     \includegraphics[width=0.45\textwidth]{/home/meg/presentations/slides/graphics/mouse_v125.png} \\
 
-\begin{frame}
-  \frametitle{Preliminaries for variational formulation of the
-    quasi-static MPET equations}
+%%     \includegraphics[height=0.2\textheight]{/home/meg/presentations/slides/graphics/biot.jpg}
+%%     %\only<2>{\includegraphics[height=0.2\textheight]{/home/meg/presentations/slides/graphics/firth.jpg}}
+%%     \visible<2->{\includegraphics[height=0.2\textheight]{/home/meg/presentations/slides/graphics/darcy.jpeg}}
+%%     \hspace{1em}
+%%     \visible<3->{\includegraphics[height=0.2\textheight]{/home/meg/presentations/slides/graphics/stokes.jpg}}
+%%   \end{column}
+%%   \end{columns}
+%%   \vspace{-1em}
+%%   \refer{Biot (1941), Murad, Thom\'ee and Loula (1992-1996), Phillips and Wheeler (2007-2008), and many others}
+%% \end{frame}
 
-  \textbf{Boundary conditions:} Let $\Omega \subset \R^d$ with boundary
-  $\partial \Omega$ and $T > 0$. \\ $u = 0$ on $\alert{\Gamma} \subset \partial
-  \Omega$, $\sigma \cdot n \equiv (\sigma^{\ast}(u) - \ssum_{a}
-  \alpha_a p_a I) \cdot n = 0$ on $\partial \Omega - \Gamma \not =
-  \emptyset$ and \\ $p_a = 0$ on $\partial \Omega$ for $a = 1, \dots, A$.
+%% \begin{frame}
+%%   \frametitle{Stability of saddle point problems}
+%%   {\small
+%%     \vspace{-1em}
+%%     \begin{columns}[T]
+%%     \begin{column}{0.5\textwidth}
+%%       \begin{block}{Abstract form}
+%%       Find $u \in V$ and $p \in Q$ such that
+%%       \begin{align*}
+%%         a(u, v) + b(v, p) &= \inner{f}{v} \quad \foralls v \in V \\
+%%         b(u, q) - c(p, q) &= \inner{g}{q} \quad \foralls q \in Q 
+%%       \end{align*}
 
-  \medskip
+%%       \begin{equation*}
+%%       \begin{pmatrix}
+%%         A & B^T \\
+%%         B & -C 
+%%       \end{pmatrix}
+%%       \begin{pmatrix}
+%%         u \\
+%%         p
+%%       \end{pmatrix}
+%%       =
+%%       \begin{pmatrix}
+%%         f \\
+%%         g
+%%       \end{pmatrix}
+%%       \end{equation*}
+%%       \end{block}
+%%       \includegraphics[width=\textwidth]{/home/meg/presentations/slides/graphics/saddlepoint.png} 
+%%       \refer{Ladyzhenskaya (1969),  Babu\v ska (1972), Brezzi (1974)}
+%%     \end{column}
+%%     \begin{column}{0.5\textwidth}
+%%           \vspace{-1em}
+%%       \textbf{Example: (Time-discrete) Biot}
+%%         \begin{align*}
+%%           A u &= - \Div (2 \mu \varepsilon(u) + \lambda \Div u I) \\
+%%           B u &= - \Div u \\
+%%           C p &= c_0 p - \Div K \Grad p
+%%         \end{align*}
+%%         \visible<2->{
+%%         \centering
+%%         \includegraphics[width=0.3\textwidth]{/home/meg/presentations/slides/graphics/cg.png}
+%%         \includegraphics[width=0.3\textwidth]{/home/meg/presentations/slides/graphics/bdm.png}
+%%         \begin{block}{Stability conditions}
+%%         Well-posed problem if $a, b, c$ continuous, $c$ pos. def., and
+%%         $\exists \, \alpha, \beta > 0$
+%%         \begin{align*}
+%%           a(u, u) \geq \alpha \| u \|_V^2 \quad \foralls u \in \mathrm{ker} B \\
+%%           \inf_{q \in Q} \sup_{v \in V} |b(v, q)| \|v\|_{V}^{-1} \|q\|_{Q}^{-1} \geq \beta 
+%%         \end{align*}
+%%       \end{block}
+%%         \vspace{-1em}
+%%         }
+%%     \end{column}
+%%   \end{columns}
+%% }
+%% \end{frame}
+
+%% \input{/home/meg/presentations/slides/waterscape_mpet_basics.tex}
+
+%% \input{/home/meg/presentations/slides/waterscape_mpet_quasistatic.tex}
+
+%% \mysection{Finite element methods for generalized poroelasticity}
+
+%% \begin{frame}
+%%   \frametitle{Preliminaries for variational formulation of the
+%%     quasi-static MPET equations}
+
+%%   \textbf{Boundary conditions:} Let $\Omega \subset \R^d$ with boundary
+%%   $\partial \Omega$ and $T > 0$. \\ $u = 0$ on $\alert{\Gamma} \subset \partial
+%%   \Omega$, $\sigma \cdot n \equiv (\sigma^{\ast}(u) - \ssum_{a}
+%%   \alpha_a p_a I) \cdot n = 0$ on $\partial \Omega - \Gamma \not =
+%%   \emptyset$ and \\ $p_a = 0$ on $\partial \Omega$ for $a = 1, \dots, A$.
+
+%%   \medskip
   
-  \textbf{Initial conditions}: $u(t = 0) = u_0$, $p_a(t = 0) = p_{a,
-    0}$ for $a = 1, \dots, A$ ($c_a > 0$).
+%%   \textbf{Initial conditions}: $u(t = 0) = u_0$, $p_a(t = 0) = p_{a,
+%%     0}$ for $a = 1, \dots, A$ ($c_a > 0$).
 
-  \bigskip
+%%   \bigskip
   
-  \textbf{Function spaces:} Define
-  \begin{equation*}
-    \alert{V} = H^1_{0, \Gamma}(\Omega; \R^d),
-    \quad
-    \alert{Q_0} = L^2(\Omega),
-    \quad
-    \alert{Q_a} = H^1_0(\Omega), \quad a = 1, \dots, A.
-  \end{equation*}
+%%   \textbf{Function spaces:} Define
+%%   \begin{equation*}
+%%     \alert{V} = H^1_{0, \Gamma}(\Omega; \R^d),
+%%     \quad
+%%     \alert{Q_0} = L^2(\Omega),
+%%     \quad
+%%     \alert{Q_a} = H^1_0(\Omega), \quad a = 1, \dots, A.
+%%   \end{equation*}
 
-  \bigskip
+%%   \bigskip
 
-  \textbf{Weighted inner product and norm:} Let
-  \begin{equation*}
-    \inner{a}{b} \equiv \int_{\Omega} a \cdot b \dx,
-    \quad
-    \inner{a}{b}_{\beta} \equiv \int_{\Omega} \beta a \cdot b \dx,
-    \quad
-    \| a \|_{\beta}^2 \equiv \inner{a}{a}_{\beta}
-    \quad
-    \beta \in \R^{+} .
-  \end{equation*}
-\end{frame}
+%%   \textbf{Weighted inner product and norm:} Let
+%%   \begin{equation*}
+%%     \inner{a}{b} \equiv \int_{\Omega} a \cdot b \dx,
+%%     \quad
+%%     \inner{a}{b}_{\beta} \equiv \int_{\Omega} \beta a \cdot b \dx,
+%%     \quad
+%%     \| a \|_{\beta}^2 \equiv \inner{a}{a}_{\beta}
+%%     \quad
+%%     \beta \in \R^{+} .
+%%   \end{equation*}
+%% \end{frame}
 
 
-\input{/home/meg/presentations/slides/waterscape_soa_mpet.tex}
+%% \input{/home/meg/presentations/slides/waterscape_soa_mpet.tex}
 
-\input{/home/meg/presentations/slides/waterscape_total_pressure_short.tex}
+%% \input{/home/meg/presentations/slides/waterscape_total_pressure_short.tex}
 
-\begin{frame}
-  \frametitle{Displacements clearly differ between total pressure and "standard" mixed formulations ($\nu = 0.4999$)}
-  \centering
-  \begin{figure}
-  \includegraphics[width=0.9\textwidth]{/home/meg/presentations/slides/graphics/waterscape_total_pressure.png}
-  \caption{Comparison of displacements computed using the standard and
-    total pressure formulation. Plots of displacement magnitude
-    $|u(x_i, t)|$ versus time $t$, for a set of points $x_0, x_1,
-    x_2$. The computed displacements clearly differ between the two
-    solution methods}
-  \end{figure}
-\end{frame}
+%% \begin{frame}
+%%   \frametitle{Displacements clearly differ between total pressure and "standard" mixed formulations ($\nu = 0.4999$)}
+%%   \centering
+%%   \begin{figure}
+%%   \includegraphics[width=0.9\textwidth]{/home/meg/presentations/slides/graphics/waterscape_total_pressure.png}
+%%   \caption{Comparison of displacements computed using the standard and
+%%     total pressure formulation. Plots of displacement magnitude
+%%     $|u(x_i, t)|$ versus time $t$, for a set of points $x_0, x_1,
+%%     x_2$. The computed displacements clearly differ between the two
+%%     solution methods}
+%%   \end{figure}
+%% \end{frame}
 
-\mysection{From hemispheres to brain meshes}
+%% \mysection{From hemispheres to brain meshes}
 
-\mysection{Gray and white matter}
+%% \mysection{Gray and white matter}
 
-\begin{frame}
-\frametitle{Gray and white matter differs substantially in terms of properties}
+%% \begin{frame}
+%% \frametitle{Gray and white matter differs substantially in terms of properties}
 
-\begin{columns}[T]
-  \begin{column}{0.6\textwidth}
-    {\centering
-    \includegraphics[width=0.8\textwidth]{graphics/gray_vs_white_matter.png}
-    }
+%% \begin{columns}[T]
+%%   \begin{column}{0.6\textwidth}
+%%     {\centering
+%%     \includegraphics[width=0.8\textwidth]{graphics/gray_vs_white_matter.png}
+%%     }
     
-    Brain $\Omega$ is heterogeneous and composed of gray matter
-      $\Omega_g$ and white matter $\Omega_w$.
+%%     Brain $\Omega$ is heterogeneous and composed of gray matter
+%%       $\Omega_g$ and white matter $\Omega_w$.
 
-      \bigskip
+%%       \bigskip
 
-      \alert{Example:} Heterogeneous diffusion (permeability,
-      stiffness) tensor
-      \begin{equation*}
-        D =
-        D(x) = \left \{
-        \begin{matrix}
-          D_g & x \in \Omega_g, \\
-          D_w & x \in \Omega_w 
-        \end{matrix}
-        \right .
-      \end{equation*}
+%%       \alert{Example:} Heterogeneous diffusion (permeability,
+%%       stiffness) tensor
+%%       \begin{equation*}
+%%         D =
+%%         D(x) = \left \{
+%%         \begin{matrix}
+%%           D_g & x \in \Omega_g, \\
+%%           D_w & x \in \Omega_w 
+%%         \end{matrix}
+%%         \right .
+%%       \end{equation*}
 
-  \end{column}
-  \begin{column}{0.4\textwidth}
-      \includegraphics[width=\textwidth]{/home/meg/papers/current/hikeandsurf/Book/graphics/chp2/exp-matters.png}
-  \end{column}
-\end{columns}
+%%   \end{column}
+%%   \begin{column}{0.4\textwidth}
+%%       \includegraphics[width=\textwidth]{/home/meg/papers/current/hikeandsurf/Book/graphics/chp2/exp-matters.png}
+%%   \end{column}
+%% \end{columns}
 
-\refer{\href{ https://doi.org/10.3389/fncel.2015.00257}{Budday et al (2015)} (Fig 2))}
+%% \refer{\href{ https://doi.org/10.3389/fncel.2015.00257}{Budday et al (2015)} (Fig 2))}
 
-\end{frame}
+%% \end{frame}
 
-\begin{frame}
-\frametitle{Creating a gray and white matter mesh from surface segmentation}
+%% \begin{frame}
+%% \frametitle{Creating a gray and white matter mesh from surface segmentation}
 
-\begin{columns}
-\begin{column}{0.5\textwidth}
-\begin{enumerate}
-\item
-  Convert FreeSurfer's pial and white left hemisphere surfaces to STL
-\item
-  Create a mesh conforming to the interior interface using SVM-Tk,
-\item
-  Include labels for the different regions relative to the surfaces
-\end{enumerate}
-\end{column}
-\begin{column}{0.5\textwidth}
-\end{column}
+%% \begin{columns}
+%% \begin{column}{0.5\textwidth}
+%% \begin{enumerate}
+%% \item
+%%   Convert FreeSurfer's pial and white left hemisphere surfaces to STL
+%% \item
+%%   Create a mesh conforming to the interior interface using SVM-Tk,
+%% \item
+%%   Include labels for the different regions relative to the surfaces
+%% \end{enumerate}
+%% \end{column}
+%% \begin{column}{0.5\textwidth}
+%% \end{column}
 
-\end{columns}
-\end{frame}
+%% \end{columns}
+%% \end{frame}
 
-\begin{frame}
-\frametitle{SVM-Tk subdomain maps}
-\end{frame}
+%% \begin{frame}
+%% \frametitle{SVM-Tk subdomain maps}
+%% \end{frame}
 
-\begin{frame}
-\frametitle{Gray and white matter meshes: results}
-\end{frame}
+%% \begin{frame}
+%% \frametitle{Gray and white matter meshes: results}
+%% \end{frame}
 
-\videosection{Video example: generating a gray and white matter mesh}{}{}
+%% \videosection{Video example: generating a gray and white matter mesh}{}{}
 
-\mysection{Extracting the ventricular system}
+%% \mysection{Extracting the ventricular system}
 
-\videosection{Video example 2}{}{}
+%% \videosection{Video example 2}{}{}
 
-\mysection{Combining hemispheres}
+%% \mysection{Combining hemispheres}
 
-\videosection{Video example 3}{}{}
+%% \videosection{Video example 3}{}{}
 
-\mysection{Poroelastic brain simulations}
+%% \mysection{Poroelastic brain simulations}
 
-\videosection{Video example 4}{}{}
+%% \videosection{Video example 4}{}{}
 
-% For Lectures 5-6 I think: 
+%% % For Lectures 5-6 I think: 
 
-%\mysection{Parcellations}
-%\videosection{Video example 5}{}{}
+%% %\mysection{Parcellations}
+%% %\videosection{Video example 5}{}{}
 
-\mysection{Igor, bring me more brains!}
+%% \mysection{Igor, bring me more brains!}
  
-\begin{frame}
-\frametitle{Want to give it a try? Natural next steps:}
-\begin{enumerate}
-\item
-\end{enumerate}
-\end{frame}
+%% \begin{frame}
+%% \frametitle{Want to give it a try? Natural next steps:}
+%% \begin{enumerate}
+%% \item
+%% \end{enumerate}
+%% \end{frame}
 
-%-------------------------------------------------------------------------------
+%% %-------------------------------------------------------------------------------
 
 
 \end{document}
