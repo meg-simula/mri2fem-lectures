@@ -1,6 +1,7 @@
 % For compatibility with acroread version 
 \pdfminorversion=4
 
+
 \documentclass[10pt, mathserif, aspectratio=169, t]{beamer}
 \mode<presentation>
 
@@ -185,79 +186,19 @@
 \input{/home/meg/presentations/slidesx/brain_pvs_hypotheses.tex}
 \input{/home/meg/presentations/slidesx/brain_ecs_diffusion.tex}
 \input{/home/meg/presentations/slidesx/brain_elasticity.tex}
+\input{/home/meg/presentations/slidesx/brain_properties_evolve.tex}
 
+\mysection{What do we know of the forces at play?}
 
-%% \input{/home/meg/presentations/slides/waterscape_volume_fraction_age.tex}
+\input{/home/meg/presentations/slidesx/brain_respiratory_2019_short.tex}
+\input{/home/meg/presentations/slidesx/brain_blood_csf_interplay.tex}
 
-%% \input{/home/meg/presentations/slides/waterscape_volume_fraction_ecs.tex}
+\mysection{Porous media brain modelling}
 
-%% \mysection{What do we know of forces at play?}
+\input{/home/meg/presentations/slidesx/biot_equations.tex}
+\input{/home/meg/presentations/slidesx/brain_mpet_idea.tex}
+\input{/home/meg/presentations/slidesx/brain_mpet_quasistatic.tex}
 
-%% \input{/home/meg/presentations/slides/waterscapes_respiratory_math_2019.tex}
-
-%% \begin{frame}
-%% \frametitle{Baledent}
-
-
-%% \end{frame}
-
-%% \mysection{Porous media brain modelling}
-
-%% \begin{frame}
-%%   \frametitle{Biot's equations describe displacement and flow in a poroelastic medium}
-%%   \small
-%%   \begin{columns}
-%%   \begin{column}{0.6\textwidth}
-%%     Find the displacement \only<1-3>{$u = u(x, t)$} and the pressure \only<1-3>{$p = p(x, t)$}
-%%     over $\Omega \times [0, T]$ such that:
-%%   \only<1-3> {
-%%   \begin{subequations}
-%%     \begin{align*}
-%%     - \Div \left ( 2 \mu \varepsilon(u) + \lambda \Div u I - p I \right ) &= f, \\
-%%     c_0 \dot{p} + \Div \dot{u} - \Div K \Grad p &= g
-%%     \end{align*}
-%%   \end{subequations}
-%%   }
-
-%% \vspace{-0.5em}
-%%   \visible<2->{
-%%   \textbf{Low-storage, incompressible regime}: $c_0 = 0$, $\lambda
-%%     \rightarrow \infty$: $\Div u \rightarrow 0$, system decouples 
-%%     \begin{align*}
-%%       - \Div K \Grad p &= g &&\textrm{\alert{(Darcy)}} \\
-%%       - \Div \left ( 2 \mu \varepsilon(u) + \lambda \Div u \right ) &= f - \Grad p && \textrm{\alert{(Elasticity)}} 
-%%     \end{align*}
-%%   }
-
-%%   \vspace{-0.5em}
-%%   \visible<3->{
-%%     \textbf{Low-storage, impermeable regime}: $c_0 = 0$, $K \rightarrow 0$: 
-%%       \begin{equation*}
-%%         \begin{split}
-%%         - \Div \left ( 2 \mu \varepsilon(u) + \lambda \Div u  - p I \right ) &= f, \\
-%%         \Div u &= 0
-%%         \end{split}
-%%         \quad \textrm{\alert{(Stokes)}}
-%%       \end{equation*}
-%%       }
-%%   \end{column}
-%%   \begin{column}{0.4\textwidth}
-%%     \centering
-%%     \includegraphics[width=0.45\textwidth]{/home/meg/presentations/slides/graphics/mouse_u125.png} 
-%%     \includegraphics[width=0.45\textwidth]{/home/meg/presentations/slides/graphics/mouse_p125.png} \\
-%%     \vspace{-1em}
-%%     \includegraphics[width=0.45\textwidth]{/home/meg/presentations/slides/graphics/mouse_v125.png} \\
-
-%%     \includegraphics[height=0.2\textheight]{/home/meg/presentations/slides/graphics/biot.jpg}
-%%     %\only<2>{\includegraphics[height=0.2\textheight]{/home/meg/presentations/slides/graphics/firth.jpg}}
-%%     \visible<2->{\includegraphics[height=0.2\textheight]{/home/meg/presentations/slides/graphics/darcy.jpeg}}
-%%     \hspace{1em}
-%%     \visible<3->{\includegraphics[height=0.2\textheight]{/home/meg/presentations/slides/graphics/stokes.jpg}}
-%%   \end{column}
-%%   \end{columns}
-%%   \vspace{-1em}
-%%   \refer{Biot (1941), Murad, Thom\'ee and Loula (1992-1996), Phillips and Wheeler (2007-2008), and many others}
-%% \end{frame}
 
 %% \begin{frame}
 %%   \frametitle{Stability of saddle point problems}
@@ -318,11 +259,7 @@
 %% }
 %% \end{frame}
 
-%% \input{/home/meg/presentations/slides/waterscape_mpet_basics.tex}
-
-%% \input{/home/meg/presentations/slides/waterscape_mpet_quasistatic.tex}
-
-%% \mysection{Finite element methods for generalized poroelasticity}
+\mysection{Finite element methods for generalized poroelasticity}
 
 %% \begin{frame}
 %%   \frametitle{Preliminaries for variational formulation of the
@@ -364,101 +301,44 @@
 %%   \end{equation*}
 %% \end{frame}
 
+\begin{frame}
+  \begin{align*}
+    - \Div (2 \mu \varepsilon(u) + \lambda \Div u \, \mathrm{I} - \alert{\ssum_{j} \alpha_j} p_j \, \mathrm{I} ) &= f, \\
+    c_{j} \dot{p}_{j} + \alpha_{j} \Div \dot{u} - \Div K_{j} \Grad p_{j} + \alert{S_j} &= g_{j} \quad j = 1, \dots, J.
+  \end{align*}
+\end{frame}
 
-%% \input{/home/meg/presentations/slides/waterscape_soa_mpet.tex}
+\begin{frame}
+\end{frame}
 
-%% \input{/home/meg/presentations/slides/waterscape_total_pressure_short.tex}
+\input{/home/meg/presentations/slides/waterscape_soa_mpet.tex}
+\input{/home/meg/presentations/slides/waterscape_total_pressure_short.tex}
 
-%% \begin{frame}
-%%   \frametitle{Displacements clearly differ between total pressure and "standard" mixed formulations ($\nu = 0.4999$)}
-%%   \centering
-%%   \begin{figure}
-%%   \includegraphics[width=0.9\textwidth]{/home/meg/presentations/slides/graphics/waterscape_total_pressure.png}
-%%   \caption{Comparison of displacements computed using the standard and
-%%     total pressure formulation. Plots of displacement magnitude
-%%     $|u(x_i, t)|$ versus time $t$, for a set of points $x_0, x_1,
-%%     x_2$. The computed displacements clearly differ between the two
-%%     solution methods}
-%%   \end{figure}
-%% \end{frame}
+\begin{frame}
+  \frametitle{Displacements clearly differ between total pressure and "standard" mixed formulations ($\nu = 0.4999$)}
+  \centering
+  \begin{figure}
+  \includegraphics[width=0.9\textwidth]{/home/meg/presentations/slides/graphics/waterscape_total_pressure.png}
+  \caption{Comparison of displacements computed using the standard and
+    total pressure formulation. Plots of displacement magnitude
+    $|u(x_i, t)|$ versus time $t$, for a set of points $x_0, x_1,
+    x_2$. The computed displacements clearly differ between the two
+    solution methods}
+  \end{figure}
+\end{frame}
 
-%% \mysection{From hemispheres to brain meshes}
+\mysection{... back to more hands-on ...}
 
-%% \mysection{Gray and white matter}
+\mysection{From hemispheres to brain meshes}
 
-%% \begin{frame}
-%% \frametitle{Gray and white matter differs substantially in terms of properties}
+\mysection{Respecting gray and white matter}
+\input{/home/meg/presentations/slidesx/mri2fem_gray_white.tex}
 
-%% \begin{columns}[T]
-%%   \begin{column}{0.6\textwidth}
-%%     {\centering
-%%     \includegraphics[width=0.8\textwidth]{graphics/gray_vs_white_matter.png}
-%%     }
-    
-%%     Brain $\Omega$ is heterogeneous and composed of gray matter
-%%       $\Omega_g$ and white matter $\Omega_w$.
+\mysection{Extracting the ventricular system}
+\input{/home/meg/presentations/slidesx/mri2fem_ventricles.tex}
 
-%%       \bigskip
-
-%%       \alert{Example:} Heterogeneous diffusion (permeability,
-%%       stiffness) tensor
-%%       \begin{equation*}
-%%         D =
-%%         D(x) = \left \{
-%%         \begin{matrix}
-%%           D_g & x \in \Omega_g, \\
-%%           D_w & x \in \Omega_w 
-%%         \end{matrix}
-%%         \right .
-%%       \end{equation*}
-
-%%   \end{column}
-%%   \begin{column}{0.4\textwidth}
-%%       \includegraphics[width=\textwidth]{/home/meg/papers/current/hikeandsurf/Book/graphics/chp2/exp-matters.png}
-%%   \end{column}
-%% \end{columns}
-
-%% \refer{\href{ https://doi.org/10.3389/fncel.2015.00257}{Budday et al (2015)} (Fig 2))}
-
-%% \end{frame}
-
-%% \begin{frame}
-%% \frametitle{Creating a gray and white matter mesh from surface segmentation}
-
-%% \begin{columns}
-%% \begin{column}{0.5\textwidth}
-%% \begin{enumerate}
-%% \item
-%%   Convert FreeSurfer's pial and white left hemisphere surfaces to STL
-%% \item
-%%   Create a mesh conforming to the interior interface using SVM-Tk,
-%% \item
-%%   Include labels for the different regions relative to the surfaces
-%% \end{enumerate}
-%% \end{column}
-%% \begin{column}{0.5\textwidth}
-%% \end{column}
-
-%% \end{columns}
-%% \end{frame}
-
-%% \begin{frame}
-%% \frametitle{SVM-Tk subdomain maps}
-%% \end{frame}
-
-%% \begin{frame}
-%% \frametitle{Gray and white matter meshes: results}
-%% \end{frame}
-
-%% \videosection{Video example: generating a gray and white matter mesh}{}{}
-
-%% \mysection{Extracting the ventricular system}
-
-%% \videosection{Video example 2}{}{}
-
-%% \mysection{Combining hemispheres}
-
-%% \videosection{Video example 3}{}{}
+\mysection{Combining hemispheres}
+\input{/home/meg/presentations/slidesx/mri2fem_combining_hemispheres.tex}
 
 %% \mysection{Poroelastic brain simulations}
 
@@ -469,14 +349,14 @@
 %% %\mysection{Parcellations}
 %% %\videosection{Video example 5}{}{}
 
-%% \mysection{Igor, bring me more brains!}
+\mysection{Igor, bring me more brains!}
  
-%% \begin{frame}
-%% \frametitle{Want to give it a try? Natural next steps:}
-%% \begin{enumerate}
-%% \item
-%% \end{enumerate}
-%% \end{frame}
+\begin{frame}
+\frametitle{Want to give it a try? Natural next steps:}
+\begin{enumerate}
+\item
+\end{enumerate}
+\end{frame}
 
 %% %-------------------------------------------------------------------------------
 
