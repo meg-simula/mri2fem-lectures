@@ -114,7 +114,6 @@
   \begin{columns}
     \begin{column}{0.25\textwidth}
     \centering
-    \vspace{1em}
     \includegraphics[width=\textwidth]{graphics/simula_logo_main_RGB.pdf} \\
     \vspace{1em}
     \includegraphics[width=\textwidth]{graphics/waterscales.pdf}  \\
@@ -180,7 +179,7 @@
 
 \graphicspath{{/home/meg/presentations/slidesx/}}
 
-\mysection{The brain as a poroelastic medium}
+\mysection{I: The brain as a poroelastic medium}
 
 \input{/home/meg/presentations/slidesx/brain_poroelasticity.tex}
 \input{/home/meg/presentations/slidesx/brain_pvs_hypotheses.tex}
@@ -188,12 +187,12 @@
 \input{/home/meg/presentations/slidesx/brain_elasticity.tex}
 \input{/home/meg/presentations/slidesx/brain_properties_evolve.tex}
 
-\mysection{What do we know of the forces at play?}
+\mysection{I: What do we know of the forces at play?}
 
 \input{/home/meg/presentations/slidesx/brain_respiratory_2019_short.tex}
 \input{/home/meg/presentations/slidesx/brain_blood_csf_interplay.tex}
 
-\mysection{Porous media brain modelling}
+\mysection{II: Porous media brain modelling}
 
 \input{/home/meg/presentations/slidesx/biot_equations.tex}
 \input{/home/meg/presentations/slidesx/brain_mpet_idea.tex}
@@ -259,7 +258,7 @@
 %% }
 %% \end{frame}
 
-\mysection{Finite element methods for generalized poroelasticity}
+\mysection{II: Finite element methods for generalized poroelasticity}
 
 \begin{frame}
   \frametitle{Deriving a finite element formulation for the MPET equations (I)}
@@ -305,9 +304,7 @@ $Q_1, \dots, Q_J$
 
 \input{/home/meg/presentations/slidesx/brain_mpet_sisc_2019.tex}
 
-\mysection{... back to more hands-on ...}
-
-\mysection{From hemispheres to brain meshes}
+\mysection{III: From hemispheres to brain meshes}
 
 \mysection{Respecting gray and white matter}
 \input{/home/meg/presentations/slidesx/mri2fem_gray_white.tex}
@@ -333,6 +330,23 @@ $Q_1, \dots, Q_J$
 \frametitle{Want to give it a try? Natural next steps:}
 \begin{enumerate}
 \item
+  Read Chapters 3-4 of \href{https://github.com/kent-and/mri2fem}{Mardal et al (2021)}
+\item
+  Try the scripts for generating meshes (gray/white, ventricles,
+  joining hemispheres)
+\item
+  Examine your results in ParaView - do the markers and tags make
+  sense? Are the boundaries/interfaces marked as expected?
+\item
+  Run a diffusion simulation with different diffusion coefficients in
+  gray and white matter.
+\item
+  The source code associated with
+  \href{https://doi.org/10.1137/18M1182395}{Lee, Piersanti, Mardal,
+    Rognes (2019)} is also available on Zenodo:
+  \href{http://doi.org/10.5281/zenodo.1215636}{http://doi.org/10.5281/zenodo.1215636}.
+  Try the MPET code on one of the brain meshes? (Caveat: we haven't run it in a
+  few years...)
 \end{enumerate}
 \end{frame}
 
