@@ -145,7 +145,7 @@
 
       Oslo, Norway \\
       \medskip
-      Jan 15, 22, 29 -- 2021 \\
+      Jan 15, 22, and 29 2021 \\
       }
     \end{column}
   \end{columns}
@@ -174,7 +174,7 @@
         % Hands-on meshing
         From hemispheres to brain meshes and simulations
       \end{enumerate}
-    \item[Lectures 5-6] Introducing parcellations and anisotropy (DTI)
+    \item[Lectures 5-6] Introducing diffusion tensor images (anisotropy, parcellations)
   \end{description}
 \end{frame}
 
@@ -261,71 +261,49 @@
 
 \mysection{Finite element methods for generalized poroelasticity}
 
-%% \begin{frame}
-%%   \frametitle{Preliminaries for variational formulation of the
-%%     quasi-static MPET equations}
-
-%%   \textbf{Boundary conditions:} Let $\Omega \subset \R^d$ with boundary
-%%   $\partial \Omega$ and $T > 0$. \\ $u = 0$ on $\alert{\Gamma} \subset \partial
-%%   \Omega$, $\sigma \cdot n \equiv (\sigma^{\ast}(u) - \ssum_{a}
-%%   \alpha_a p_a I) \cdot n = 0$ on $\partial \Omega - \Gamma \not =
-%%   \emptyset$ and \\ $p_a = 0$ on $\partial \Omega$ for $a = 1, \dots, A$.
-
-%%   \medskip
-  
-%%   \textbf{Initial conditions}: $u(t = 0) = u_0$, $p_a(t = 0) = p_{a,
-%%     0}$ for $a = 1, \dots, A$ ($c_a > 0$).
-
-%%   \bigskip
-  
-%%   \textbf{Function spaces:} Define
-%%   \begin{equation*}
-%%     \alert{V} = H^1_{0, \Gamma}(\Omega; \R^d),
-%%     \quad
-%%     \alert{Q_0} = L^2(\Omega),
-%%     \quad
-%%     \alert{Q_a} = H^1_0(\Omega), \quad a = 1, \dots, A.
-%%   \end{equation*}
-
-%%   \bigskip
-
-%%   \textbf{Weighted inner product and norm:} Let
-%%   \begin{equation*}
-%%     \inner{a}{b} \equiv \int_{\Omega} a \cdot b \dx,
-%%     \quad
-%%     \inner{a}{b}_{\beta} \equiv \int_{\Omega} \beta a \cdot b \dx,
-%%     \quad
-%%     \| a \|_{\beta}^2 \equiv \inner{a}{a}_{\beta}
-%%     \quad
-%%     \beta \in \R^{+} .
-%%   \end{equation*}
-%% \end{frame}
-
 \begin{frame}
+  \frametitle{Deriving a finite element formulation for the MPET equations (I)}
   \begin{align*}
     - \Div (2 \mu \varepsilon(u) + \lambda \Div u \, \mathrm{I} - \alert{\ssum_{j} \alpha_j} p_j \, \mathrm{I} ) &= f, \\
-    c_{j} \dot{p}_{j} + \alpha_{j} \Div \dot{u} - \Div K_{j} \Grad p_{j} + \alert{S_j} &= g_{j} \quad j = 1, \dots, J.
+    c_{j} \dot{p}_{j} + \alpha_{j} \Div \dot{u} - \Div K_{j} \Grad p_{j} + \alert{S_j} &= g_{j} \quad j = 1, \dots, J,
   \end{align*}
+  where
+  \begin{equation*}
+    S_{j} =  \ssum_{i} \xi_{j \leftarrow i} (p_{j} - p_{i}).
+  \end{equation*}
 \end{frame}
 
 \begin{frame}
+  \frametitle{Deriving a finite element formulation for the MPET equations (II)}
 \end{frame}
-
-\input{/home/meg/presentations/slides/waterscape_soa_mpet.tex}
-\input{/home/meg/presentations/slides/waterscape_total_pressure_short.tex}
 
 \begin{frame}
-  \frametitle{Displacements clearly differ between total pressure and "standard" mixed formulations ($\nu = 0.4999$)}
-  \centering
-  \begin{figure}
-  \includegraphics[width=0.9\textwidth]{/home/meg/presentations/slides/graphics/waterscape_total_pressure.png}
-  \caption{Comparison of displacements computed using the standard and
-    total pressure formulation. Plots of displacement magnitude
-    $|u(x_i, t)|$ versus time $t$, for a set of points $x_0, x_1,
-    x_2$. The computed displacements clearly differ between the two
-    solution methods}
-  \end{figure}
+\frametitle{Introducing notation for variational formulations}
+
+Boundary conditions:
+
+\bigskip
+\bigskip
+
+Initial conditions
+
+\bigskip
+\bigskip
+
+$L^2$-inner product and norm (with weights)
+
+\bigskip
+\bigskip
+
+$V$ \\
+\medskip
+$Q_0$ \\
+\medskip
+$Q_1, \dots, Q_J$
+
 \end{frame}
+
+\input{/home/meg/presentations/slidesx/brain_mpet_sisc_2019.tex}
 
 \mysection{... back to more hands-on ...}
 

@@ -40,6 +40,9 @@ Tutorial video snippets are posted on [my mri2fem YouTube channel](https://youtu
 2. Viewing the FreeSurfer output
 3. Creating a mesh of the left hemisphere using SVM-Tk from FreeSurfer surfaces
 4. Simulating diffusion over the left hemisphere using FEniCS
+5. Creating a mesh of the left hemisphere conforming to gray and white matter
+6. Extracting the ventricular system and removing it from the left hemisphere
+7. Creating a full brain mesh conforming to the gray/white matter and ventricles
 
 ## Tips for lecturing via Zoom ##
 
