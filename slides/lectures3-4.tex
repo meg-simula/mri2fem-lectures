@@ -261,22 +261,6 @@
 \mysection{II: Finite element methods for generalized poroelasticity}
 
 \begin{frame}
-  \frametitle{Deriving a finite element formulation for the MPET equations (I)}
-  \begin{align*}
-    - \Div (2 \mu \varepsilon(u) + \lambda \Div u \, \mathrm{I} - \alert{\ssum_{j} \alpha_j} p_j \, \mathrm{I} ) &= f, \\
-    c_{j} \dot{p}_{j} + \alpha_{j} \Div \dot{u} - \Div K_{j} \Grad p_{j} + \alert{S_j} &= g_{j} \quad j = 1, \dots, J,
-  \end{align*}
-  where
-  \begin{equation*}
-    S_{j} =  \ssum_{i} \xi_{j \leftarrow i} (p_{j} - p_{i}).
-  \end{equation*}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Deriving a finite element formulation for the MPET equations (II)}
-\end{frame}
-
-\begin{frame}
 \frametitle{Introducing notation for variational formulations}
 
 Boundary conditions:
@@ -293,14 +277,32 @@ $L^2$-inner product and norm (with weights)
 
 \bigskip
 \bigskip
+\bigskip
 
 $V$ \\
-\medskip
+\bigskip
 $Q_0$ \\
-\medskip
+\bigskip
 $Q_1, \dots, Q_J$
 
 \end{frame}
+
+\begin{frame}
+  \frametitle{Deriving a finite element formulation for the MPET equations (I)}
+  \begin{align*}
+    - \Div (2 \mu \varepsilon(u) + \lambda \Div u \, \mathrm{I} - \alert{\ssum_{j} \alpha_j} p_j \, \mathrm{I} ) &= f, \\
+    c_{j} \dot{p}_{j} + \alpha_{j} \Div \dot{u} - \Div K_{j} \Grad p_{j} + \alert{S_j} &= g_{j} \quad j = 1, \dots, J,
+  \end{align*}
+  where
+  \begin{equation*}
+    S_{j} =  \ssum_{i} \xi_{j \leftarrow i} (p_{j} - p_{i}).
+  \end{equation*}
+\end{frame}
+
+\begin{frame}
+  \frametitle{}
+\end{frame}
+
 
 \input{/home/meg/presentations/slidesx/brain_mpet_sisc_2019.tex}
 
