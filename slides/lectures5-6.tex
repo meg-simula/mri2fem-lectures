@@ -1,0 +1,232 @@
+% For compatibility with acroread version 
+\pdfminorversion=4
+\documentclass[10pt, mathserif, aspectratio=169, t]{beamer}
+\mode<presentation>
+
+%\usefonttheme[onlymath]{serif}
+\usepackage[T1]{fontenc}
+%\usepackage{tgheros}
+%\usepackage{tgadventor}
+%\usepackage{libertine}
+%\usepackage{theinhart}
+\usepackage{helvet}
+%\usepackage{newtxtext} %Times font only for text
+
+% Use my theme
+\usetheme{rognes}
+
+% Used for image placement
+\def\imagetop#1{\vtop{\null\hbox{#1}}}
+
+% Misc packages
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{stmaryrd}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usetikzlibrary{arrows,shapes,backgrounds,decorations,mindmap,patterns,snakes}
+\usepackage{amsmath, amssymb, amsthm, amscd}
+\usepackage[english]{babel}
+\usepackage{algorithm}
+\usepackage{pythonhighlight}
+\usepackage{epstopdf}
+\usepackage{multimedia}
+\usepackage{soul}
+
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\Div}{\mathrm{div}}
+\DeclareMathOperator{\Curl}{\mathrm{curl}}
+\DeclareMathOperator{\Grad}{\mathrm{grad}}
+\DeclareMathOperator{\D}{d}
+\newcommand{\foralls}{\forall \;}
+\newcommand{\iinner}[2]{\llangle #1, #2 \rrangle}
+\newcommand{\inner}[2]{\langle #1,  #2\rangle}
+\newcommand{\totald}{\mathrm{d}}
+\newcommand{\refer}[1]{\begin{flushright}{\tiny \textcolor{darkgray}{[#1]}}\end{flushright}}
+\newcommand{\referinline}[1]{{\tiny \textcolor{darkgray}{[#1]}}}
+\newcommand{\ddt}[1]{{#1}_t}
+\newcommand{\Mi}{M_i}
+\newcommand{\Me}{M_e}
+\newcommand{\Iion}{I_{\rm{ion}}}
+\newcommand{\dx}{\, \mathrm{d}x}
+\newcommand{\ds}{\, \mathrm{d} s}
+\newcommand{\triang}{\mathcal{T}}
+\DeclareMathOperator{\trace}{tr}
+\newcommand{\duality}[2]{\langle #1, #2 \rangle}
+
+\newcommand{\mysection}[1]{\begin{frame} \begin{center} \vspace{3em} \textbf{#1} \end{center} \end{frame}}
+\newcommand{\videosection}[3]{\begin{frame} \begin{center} \vspace{3em} \href{#2}{\textcolor{rognesred}{\textbf{#1}}} \end{center} #3 \end{frame}}
+\newcommand{\sectionwithrefer}[2]{\begin{frame} \begin{center} \vspace{3em} \textbf{#1} \end{center} \refer{#2} \end{frame}}
+
+\newtheorem{prop}[theorem]{Proposition}
+
+
+\tikzstyle{na} = [baseline=-.5ex]
+\tikzstyle{every picture}+=[remember picture]
+\everymath{\displaystyle}
+
+\usepackage[small, figurename=,size=scriptsize,font={color=darkgray}]{caption}
+
+
+
+%% \usepackage{listings}
+%% \usepackage[most]{tcolorbox} 	%used for writing process notes, code boxes 
+%% \tcbuselibrary{listings,skins}  % skins needed for code box styles
+%% \usepackage{color}
+%% \usepackage{amsfonts}
+%% \usepackage{fancyvrb}		%provides tab and white space preservation for 
+%% 				%the verbatim environment. Needed for Python
+%% 				%code inclusion
+
+\definecolor{programcode}{gray}{0.65}
+
+\def\formtmpX#1#2{{\vskip3pt\noindent\fboxsep=0pt{\parbox{\textwidth}{\hbox to \textwidth{\hskip3pt\vbox{\raggedright\noindent\textbf{#2\vphantom{Qy}}}\hfill}}}\vskip3pt\par
+\noindent\kern0pt}}
+
+\newenvironment{programcode}[1]{\ignorespaces\def\stmtopen##1{##1}%
+\formtmpX{programcode}{\centerline{\small{#1}}}}{\noindent\textcolor{programcode}{\rule{\columnwidth}{0pt}}\par\addvspace{\baselineskip}}%
+
+
+
+\newcommand{\terminal}[1]{
+  \vspace{-1em}
+  \begin{programcode}{}%{Terminal window}%
+    \colorbox{blue!10}{\parbox{0.98\textwidth}{\textcolor{black}{\texttt{#1}}}}
+  \end{programcode}
+  \vspace{-0.5em}
+}
+
+\newcommand{\emp}[1]{\texttt{#1}}
+
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+
+\DeclareMathOperator{\ssum}{\textstyle \sum}
+\begin{document}
+
+%-------------------------------------------------------------------------------
+\cleanpage
+\begin{frame}
+  \begin{columns}
+    \begin{column}{0.25\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{graphics/simula_logo_main_RGB.pdf} \\
+    \vspace{1em}
+    \includegraphics[width=\textwidth]{graphics/waterscales.pdf}  \\
+    \vspace{1em}
+    \includegraphics[height=0.3\textwidth]{graphics/flag_yellow_low.jpg} 
+    \hspace{0.2em}
+    \includegraphics[width=0.3\textwidth]{graphics/logo-erc.jpg} \\
+    \vspace{1em}
+    \includegraphics[width=0.5\textwidth]{graphics/waterscape_logo.png} \\
+    \vspace{1em}
+    \includegraphics[width=\textwidth]{graphics/rcn-logo.pdf} \\
+    \end{column}
+    \begin{column}{0.75\textwidth}
+    {
+    \centering
+
+      \vspace{4em}
+
+      {\bf Brain modelling: \\ from magnetic resonance images \\ to finite element simulation} \\
+
+      \bigskip
+      \bigskip
+      
+
+      Marie E. Rognes \\
+      \bigskip
+      \bigskip
+
+      Oslo, Norway \\
+      \medskip
+      Jan 15, 22, and 29 2021 \\
+      }
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\cleanpage
+
+\begin{frame}
+  \frametitle{Outline of lectures}
+  \begin{center}
+  \includegraphics[height=2.3cm]{/home/meg/papers/current/hikeandsurf/Book/graphics/chp1/T1-image-rot-white}
+  \includegraphics[height=2.3cm]{/home/meg/papers/current/hikeandsurf/Book/graphics/chp1/ernie-volume-64}
+  \includegraphics[height=2.3cm]{/home/meg/papers/current/hikeandsurf/Book/graphics/chp1/soltn-t30-crop}
+  \end{center}
+  \begin{description}
+    \item[Lectures 1-2] Quick start: From brain MRI to FEM
+    \item[Lectures 3-4] The poroelastic brain  
+    \item[Lectures 5-6] Introducing diffusion tensor images (anisotropy, parcellations)
+      \begin{enumerate}[I]
+      \item
+        Brain parcellations 
+      \item
+        Anisotropy and the brain
+      \item
+        Brain physics and chemistry at other scales
+      \end{enumerate}
+  \end{description}
+\end{frame}
+
+\graphicspath{{/home/meg/presentations/slidesx/}}
+
+\mysection{I: Brain parcellations}
+
+\input{/home/meg/presentations/slidesx/mri2fem_parcellations.tex}
+
+\mysection{II: Anisotropy in brain characteristics}
+
+\input{/home/meg/presentations/slidesx/mri2fem_dti_anisotropy.tex}
+
+\mysection{III: Simulating tracer influx by diffusion in the brain}
+
+\input{/home/meg/presentations/slidesx/mri2fem_full_simulation.tex}
+
+\mysection{Igor, bring me the last brains!}
+ 
+\begin{frame}
+\frametitle{Want to give it a try? Natural next steps:}
+\begin{enumerate}
+\item
+  Read Chapters 5-6 of \href{https://github.com/kent-and/mri2fem}{Mardal et al (2021)}
+\item
+  Try out "abby" in the mri2fem data set        
+\item
+  Explore and have fun!                
+\end{enumerate}
+\end{frame}
+
+\mysection{Brain modelling at other scales}
+
+\sectionwithrefer{In what sense is perivascular flow driven by arterial pulsations?}{\href{https://doi.org/10.1371/journal.pone.0244442}{Daversin-Catty et al, PLoS ONE, 2020}}
+
+\input{/home/meg/presentations/slidesx/brain_mechanics_pvs_2020.tex}
+
+\begin{frame}
+  \begin{center}
+    \vspace{3em}
+    \bf Modelling osmotic and hydrostatic forces in brain tissue
+  \end{center}
+
+  \bigskip
+  
+  \refer{\href{}{Ellingsrud, Dukefoss, Enger, Halnes, Pettersen and Rognes, 
+  Validation and knowledge-integration of a computational framework \\
+  for ionic electrodiffusion with cortical spreading depression as a
+  case study, in-prep, 2021}}
+
+  \refer{\href{}{Ellingsrud, Boull\'e, Farrell, and Rognes, Accurate
+      numerical simulation of electrodiffusion and osmotic water
+      movement in brain tissue, in-prep, 2021}}
+
+\end{frame}
+
+\input{/home/meg/presentations/slidesx/brain_accurate_mori_2021.tex}
+
+%% %-------------------------------------------------------------------------------
+
+
+\end{document}
