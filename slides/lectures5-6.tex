@@ -55,7 +55,7 @@
 \DeclareMathOperator{\trace}{tr}
 \newcommand{\duality}[2]{\langle #1, #2 \rangle}
 
-\newcommand{\mysection}[1]{\begin{frame} \begin{center} \vspace{3em} \textbf{#1} \end{center} \end{frame}}
+\newcommand{\mysection}[2]{\begin{frame} \begin{center} \vspace{3em} \textbf{#1} \end{center} #2\end{frame}}
 \newcommand{\videosection}[3]{\begin{frame} \begin{center} \vspace{3em} \href{#2}{\textcolor{rognesred}{\textbf{#1}}} \end{center} #3 \end{frame}}
 \newcommand{\sectionwithrefer}[2]{\begin{frame} \begin{center} \vspace{3em} \textbf{#1} \end{center} \refer{#2} \end{frame}}
 
@@ -152,9 +152,9 @@
 \begin{frame}
   \frametitle{Outline of lectures}
   \begin{center}
-  \includegraphics[height=2.3cm]{/home/meg/papers/current/hikeandsurf/Book/graphics/chp1/T1-image-rot-white}
-  \includegraphics[height=2.3cm]{/home/meg/papers/current/hikeandsurf/Book/graphics/chp1/ernie-volume-64}
-  \includegraphics[height=2.3cm]{/home/meg/papers/current/hikeandsurf/Book/graphics/chp1/soltn-t30-crop}
+  \includegraphics[height=2.3cm]{/home/meg/papers/submitted/hikeandsurf/Book/graphics/chp1/T1-image-rot-white}
+  \includegraphics[height=2.3cm]{/home/meg/papers/submitted/hikeandsurf/Book/graphics/chp1/ernie-volume-64}
+  \includegraphics[height=2.3cm]{/home/meg/papers/submitted/hikeandsurf/Book/graphics/chp1/soltn-t30-crop}
   \end{center}
   \begin{description}
     \item[Lectures 1-2] Quick start: From brain MRI to FEM
@@ -201,7 +201,7 @@
 
 \mysection{Brain modelling at other scales}
 
-\sectionwithrefer{In what sense is perivascular flow driven by arterial pulsations?}{\href{https://doi.org/10.1371/journal.pone.0244442}{Daversin-Catty et al, PLoS ONE, 2020}}
+\mysection{In what sense is perivascular flow driven by arterial pulsations?}{\refer{\href{https://doi.org/10.1371/journal.pone.0244442}{Daversin-Catty et al, PLoS ONE, 2020}}}
 
 \input{/home/meg/presentations/slidesx/brain_mechanics_pvs_2020.tex}
 
@@ -228,5 +228,56 @@
 
 %% %-------------------------------------------------------------------------------
 
+\begin{frame}
+\end{frame}
+
+\begin{frame}
+  \begin{columns}[T]
+  \begin{column}{0.5\textwidth}
+  \begin{block}{Collaborators}
+    {\small
+    Nicolas Boull\'e (University of Oxford) \\
+    Matteo Croci (University of Oxford) \\
+    C\'ecile Daversin-Catty (Simula Research Laboratory) \\
+    Per Kristian Eide (Oslo University Hospital) \\
+    Ada Ellingsrud (Simula Research Laboratory) \\
+    Rune Enger (University of Oslo) \\
+    Patrick E. Farrell (University of Oxford) \\
+    Michael B. Giles (University of Oxford) \\
+    Jeonghun J. Lee (Baylor University) \\
+    Klas Pettersen (University of Oslo) \\
+    Eleonora Piersanti (Simula) \\
+    Erika K. Lindstr\o{}m (University of Oslo) \\
+    Kent-Andr\'e Mardal (University of Oslo) \\
+    Geir Ringstad (Oslo University Hospital) \\
+    Travis B. Thompson (University of Oxford) \\
+    Lars Magnus Valnes (Simula) \\
+    Vegard Vinje (Simula) \\
+    ... and others
+    }
+  \end{block}
+  \end{column}
+  \begin{column}{0.5\textwidth}
+    \begin{block}{Core message}
+      \bigskip
+      Mathematical models can give new insight into medicine, -- and
+      the human brain gives an extraordinary rich setting for
+      mathematics and numerics!
+    \end{block}
+    \begin{center}
+    \includegraphics[width=0.7\textwidth]{graphics/Image2.png}
+    \end{center}
+
+  \tiny{This research is supported by the European Research Council
+    (ERC) under the European Union's Horizon 2020 research and
+    innovation programme under grant agreement 714892 (Waterscales) by
+    the Research Council of Norway under grant \#250731 (Waterscape),
+    and by the EPSRC Centre For Doctoral Training in Industrially
+    Focused 706 Mathematical Modelling (EP/L015803/1).}
+  \end{column}
+
+\end{columns}   
+
+\end{frame}
 
 \end{document}
