@@ -4,6 +4,11 @@ This is a series of guest lectures given as part of the University of
 Bergen's Porous Media Short Course Series in the Spring of 2021 . The
 lectures are given online via Zoom on Jan 15, 22 and 29 at 14-16 CET.
 
+Update: Also includes the slides of a Guest Lecture given as part of 
+MAE 207: Finite Element Analysis for Coupled Problems at the University
+of California San Diego, Nov 8 2022. 
+
+
 ## Lecture schedule ##
 
 I will roughly follow the following schedule each week:
