@@ -8,6 +8,7 @@ Update: Also includes the slides of a Guest Lecture given as part of
 MAE 207: Finite Element Analysis for Coupled Problems at the University
 of California San Diego, Nov 8 2022. 
 
+This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
 
 ## Lecture schedule ##
 
