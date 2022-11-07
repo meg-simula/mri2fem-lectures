@@ -29,6 +29,7 @@
 \usepackage{epstopdf}
 \usepackage{multimedia}
 \usepackage{soul}
+\usepackage{pdfpages}
 
 \newcommand{\R}{\mathbb{R}}
 \DeclareMathOperator{\Div}{\mathrm{div}}
@@ -172,27 +173,36 @@
 \input{/home/meg/presentations/slidesx/brain_sleep_xie.tex}
 
 \frame{
-  \frametitle{Interdisciplinary overview and goals of lecture}
-  \begin{enumerate}
+  \frametitle{}
+\begin{columns}[T]
+  \begin{column}{0.5\textwidth}
+  \begin{block}{Overview}
+  \small
+\begin{enumerate}
   \item
-    Motivation (5 min)
+    Motivation %(5 min)
   \item
-    Brain physiology and physics (15 min)
+    Brain physiology and physics %(15 min)
   \item
-    The brain as a Stokes-Biot coupled problem (30 min)
+    Finite elements for the brain as a Biot problem %(20 min)
   \item
-    Break (5 min)
+  \textcolor{gray}{Break} %(5 min)
   \item
-    Simulating brain pulsatility (15 min)
+    Simulating brain pulsatility via fluid-structure interactions
   \item
-    Software and getting started (15 min)
+    Software and getting started %(15 min)
   \end{enumerate}
+  \end{block}
 
-  \begin{enumerate}
+\end{column}
+  \begin{column}{0.5\textwidth}
+  \begin{block}{Goals}
+  \small
+\begin{itemize}
   \item
-    Understand core aspects of brain physiology and mechanics
+    Understand core brain physiology and mechanics
   \item
-    Understand how the brain can be modelled as a poroelastic medium
+    Understand why and how the brain can be modelled as a poroelastic medium
     (Biot) in a viscous fluid environment (Stokes).
   \item
     Learn about finite element methods for solving Biot's equations
@@ -203,7 +213,10 @@
   \item
     Learn about resources for getting started with brain modelling and
     simulations
-  \end{enumerate}
+  \end{itemize}
+  \end{block}
+\end{column}
+  \end{columns}
 }
 
 \mysection{Brain multiphysics}
@@ -219,26 +232,26 @@
 \input{/home/meg/presentations/slidesx/brain_pvs_hypotheses.tex}
 \input{/home/meg/presentations/slidesx/brain_properties_evolve.tex}
 
-\mysection{The brain as a poroelastic medium (in a fluid environment)}
+\mysection{The brain as a Stokes-Biot coupled problem}
 
 
 \input{/home/meg/presentations/slidesx/brain_biot_quasistatic.tex}
 \input{/home/meg/presentations/slidesx/biot_parameter_limits.tex}
+
+%\blackframe{
+% pdftk A=A.pdf B=B.pdf cat A1-19 B A21-end output C.pdf
+%}
+
+\input{/home/meg/presentations/slidesx/biot_saddlepoint_long.tex}
 \input{/home/meg/presentations/slidesx/brain_mpet_quasistatic.tex}
-
-
-
-%\input{/home/meg/presentations/slidesx/brain_mpet_sisc_2019.tex}
-
-%\input{/home/meg/presentations/slidesx/ern_meunier.tex}
-
-\mysection{Finite element methods for Stokes-Biot coupled problems}
+\input{/home/meg/presentations/slidesx/ern_meunier_short.tex}
 
 \mysection{Simulating brain pulsatility}
 
 \input{/home/meg/presentations/slidesx/brain_blood_csf_interplay.tex}
 \input{/home/meg/presentations/slidesx/vinje2019respiratory.tex}
 %\input{/home/meg/presentations/slidesx/mpet_aposteriori_numerics_II.tex}
+
 \input{/home/meg/presentations/slidesx/brain_blood_csf_interplay.tex}
 \input{/home/meg/presentations/slidesx/biot_stokes_brain.tex}
 
@@ -247,21 +260,29 @@
 
 %\input{/home/meg/presentations/slidesx/mri2fem_gray_white.tex}
 
-\begin{frame}
-  \frametitle{These slides and other lecture material are openly available via GitHub}
+\blackframe{
+  \frametitle{Slides and other lecture material are openly available via GitHub}
   \centering
   \includegraphics[width=\textwidth]{graphics/mri2fem-lectures-github.png} \\
   \refer{\href{https://github.com/meg-simula/mri2fem-lectures}{https://github.com/meg-simula/mri2fem-lectures}}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Mathematical modeling of the human brain -- book available on GitHub}
+}
+  
+\blackframe{
+  \frametitle{Mathematical modeling of the human brain" available on GitHub}
   \framesubtitle{by KA Mardal, ME Rognes, TB Thompson and LM Valnes; Simula SpringerBrief on Computing (2021)}
+
+  \begin{columns}[T]
+    \begin{column}{0.3\textwidth}
+    \end{column}
+    \begin{column}{0.7\textwidth}
+    \end{column}
+  \end{columns}
+
   \centering
   \includegraphics[width=\textwidth]{graphics/mri2fem-book-github.png} \\
   \refer{Mardal et al (2021): \href{https://github.com/kent-and/mri2fem}{https://github.com/kent-and/mri2fem}}
-\end{frame}
-
+}
+  
 
 \begin{frame}
   \frametitle{Resources (data, software) are openly available with our Zenodo community}
