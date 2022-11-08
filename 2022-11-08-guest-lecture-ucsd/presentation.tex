@@ -175,27 +175,27 @@
 \frame{
   \frametitle{}
 \begin{columns}[T]
-  \begin{column}{0.5\textwidth}
+  \begin{column}{0.4\textwidth}
   \begin{block}{Overview}
   \small
 \begin{enumerate}
   \item
-    Motivation %(5 min)
+    Motivation 
   \item
-    Brain physiology and physics %(15 min)
+    Brain physiology and physics 
   \item
-    Finite elements for the brain as a Biot problem %(20 min)
-  \item
-  \textcolor{gray}{Break} %(5 min)
+    Finite elements for brain poroelasticity
+  \item[]
+  \textcolor{gray}{Break} 
   \item
     Simulating brain pulsatility via fluid-structure interactions
   \item
-    Software and getting started %(15 min)
+    Simulation software and tools 
   \end{enumerate}
   \end{block}
 
 \end{column}
-  \begin{column}{0.5\textwidth}
+  \begin{column}{0.6\textwidth}
   \begin{block}{Goals}
   \small
 \begin{itemize}
@@ -206,7 +206,7 @@
     (Biot) in a viscous fluid environment (Stokes).
   \item
     Learn about finite element methods for solving Biot's equations
-    and coupled Stokes-Biot multiphysics problems.
+    (and coupled Stokes-Biot multiphysics problems).
   \item
     Understand how brain modelling and simulations can inform
     physiology and medicine
@@ -243,6 +243,20 @@
 %}
 
 \input{/home/meg/presentations/slidesx/biot_saddlepoint_long.tex}
+
+\begin{frame}[fragile]
+  \frametitle{The Biot bilinear and linear forms in FEniCS}
+  \begin{columns}
+  \begin{column}{0.5\textwidth}
+    \begin{python}
+      from fenics import *
+    \end{python}
+  \end{column}
+
+  \end{columns}
+
+\end{frame}
+
 \input{/home/meg/presentations/slidesx/brain_mpet_quasistatic.tex}
 \input{/home/meg/presentations/slidesx/ern_meunier_short.tex}
 
@@ -261,36 +275,46 @@
 %\input{/home/meg/presentations/slidesx/mri2fem_gray_white.tex}
 
 \blackframe{
-  \frametitle{Slides and other lecture material are openly available via GitHub}
-  \centering
-  \includegraphics[width=\textwidth]{graphics/mri2fem-lectures-github.png} \\
-  \refer{\href{https://github.com/meg-simula/mri2fem-lectures}{https://github.com/meg-simula/mri2fem-lectures}}
+  \frametitle{These slides and other lecture material are available via GitHub}
+  {\centering
+  \includegraphics[width=\textwidth]{graphics/mri2fem-lectures-github.png} 
+  }
+  \vspace{-8em}
+  \referself{\href{https://github.com/meg-simula/mri2fem-lectures}{https://github.com/meg-simula/mri2fem-lectures}}
 }
   
 \blackframe{
-  \frametitle{Mathematical modeling of the human brain" available on GitHub}
-  \framesubtitle{by KA Mardal, ME Rognes, TB Thompson and LM Valnes; Simula SpringerBrief on Computing (2021)}
+  \frametitle{Mathematical modeling of the human brain: from MRI to FEM}
 
   \begin{columns}[T]
     \begin{column}{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{graphics/mri2fem_cover.jpg}
     \end{column}
     \begin{column}{0.7\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{graphics/mri2fem-book-github.png} \\
     \end{column}
   \end{columns}
 
-  \centering
-  \includegraphics[width=\textwidth]{graphics/mri2fem-book-github.png} \\
-  \refer{Mardal et al (2021): \href{https://github.com/kent-and/mri2fem}{https://github.com/kent-and/mri2fem}}
+  \referself{\href{https://github.com/kent-and/mri2fem}{https://github.com/kent-and/mri2fem}}
 }
   
-
 \begin{frame}
-  \frametitle{Resources (data, software) are openly available with our Zenodo community}
+  \frametitle{Further resources (data sets, software) are available via Zenodo}
   \vspace{-0.5em}
   \centering
   \includegraphics[width=0.85\textwidth]{graphics/mri2fem-zenodo.png} \\
   \vspace{-1em}
-  \refer{\href{https://zenodo.org/communities/mri2fem/}{https://zenodo.org/communities/mri2fem/}}
+  \referself{\href{https://zenodo.org/communities/mri2fem/}{https://zenodo.org/communities/mri2fem/}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Step-by-step tutorial videos are available on YouTube}
+  \centering
+  \includegraphics[width=\textwidth]{graphics/mri2fem-youtube.png} \\
+  \vspace{-1em}
+  \referself{\href{https://www.youtube.com/playlist?list=PL2H4xO8DvXwVNy7EelY\_TuYUgvQ4Dw\_Lz}{https://www.youtube.com/playlist?list=PL2H4xO8DvXwVNy7EelY\_TuYUgvQ4Dw\_Lz}}
 \end{frame}
 
 \blackframe{
@@ -330,7 +354,7 @@
 
 }
 
-\blackframe{
+\begin{frame}
 \frametitle{Recommended software components}
 
 \begin{itemize}
@@ -350,17 +374,21 @@
   ParaView for visualization: \href{https://www.paraview.org/}{https://www.paraview.org/}
 \end{itemize}
 
+\medskip
   \begin{center}
   \includegraphics[height=2.3cm]{/home/meg/papers/published/mri2fem/book/graphics/chp1/T1-image-rot-white.png}
   \includegraphics[height=2.3cm]{/home/meg/papers/published/mri2fem/book/graphics/chp1/ernie-volume-64.png}
   \includegraphics[height=2.3cm]{/home/meg/papers/published/mri2fem/book/graphics/chp1/soltn-t30-crop.png}
   \end{center}
 
-}
+\end{frame}
 
-\blackframe{
+
+\begin{frame}
 \frametitle{We follow these three steps to generate a mesh from T1 images}
 
+\begin{columns}[T]
+\begin{column}{0.7\textwidth}
 To generate a mesh from an MRI data set including T1-weighted images,
 we follow three main steps:
 \bigskip
@@ -372,9 +400,19 @@ we follow three main steps:
 \item 
   generate a volume mesh of the interior of these using SVM-Tk.
 \end{enumerate}
-}
+\end{column}
+\begin{column}{0.3\textwidth}
+  \centering
+  \includegraphics[width=0.4\textwidth]{/home/meg/papers/published/mri2fem/book/graphics/chp2/T1-image.png} \\
+  \includegraphics[width=0.8\textwidth]{/home/meg/papers/published/mri2fem/book/graphics/chp3/taubin-smoothed-10.png} \\
+  \includegraphics[width=0.8\textwidth]{/home/meg/papers/published/mri2fem/book/graphics/chp1/ernie-volume-64.png} \\
+\end{column}
+\end{columns}
 
-\blackframe{
+\end{frame}
+
+
+\begin{frame}
 \frametitle{Step 2: Using FreeSurfer to segment images and create surfaces}
 
 FreeSurfer offers the command \emp{recon-all} to segment the brain
@@ -398,7 +436,9 @@ Key outputs (\emp{mri2fem-dataset/freesurfer/ernie}) are
 \medskip
 
 \alert{Video: \href{https://youtu.be/Svz3kYfsCQo}{Viewing the FreeSurfer output}}
-}
+\end{frame}
+
+
 
 
 \begin{frame}
@@ -500,18 +540,23 @@ create_volume_mesh("lh.pial.stl", "lh.mesh")
 \frametitle{Igor, bring me the brain! Want to give it a try? Natural first steps:}
 \begin{enumerate}
 \item
-  Download the slides from this lecture:  \href{https://github.com/meg-simula/mri2fem-lectures}{https://github.com/meg-simula/mri2fem-lectures}.
-\item
-  Download the mri2fem data set and software from Zenodo and inspect
-  the contents using the tools discussed.
-\item
-  Download the book: Mardal et al (2021): \href{https://github.com/kent-and/mri2fem}{https://github.com/kent-and/mri2fem}.
+  Download:
+  \begin{itemize}
+  \item
+    these slides: \href{https://github.com/meg-simula/mri2fem-lectures/2022-11-08-lecture.pdf}{https://github.com/meg-simula/mri2fem-lectures/2022-11-08-lecture.pdf}.
+  \item
+    the mri2fem data set and software ($\sim$ 1Gb) 
+    \href{https://zenodo.org/communities/mri2fem/}{https://zenodo.org/communities/mri2fem/}
+  \item
+    the \emph{Mathematical modelling of the human brain: from MRI to FEM} book: \\ \href{https://github.com/kent-and/mri2fem}{https://github.com/kent-and/mri2fem}.
+  \end{itemize}
 \item
   Install software dependencies following the instructions in Chapter
   2 of Mardal et al (2021).
 \item
-  Try running some of the sample code in Chapter 3 of Mardal et al
-  (2021).
+  Inspect the data set contents using the tools described (e.g.~DicomBrowser, FreeSurfer)
+\item
+  Try running some of the sample code in Chapter 3 of the book.
 \item
   Simulate something other than diffusion? Give it a try!
 \end{enumerate}
