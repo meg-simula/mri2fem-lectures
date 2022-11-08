@@ -245,11 +245,58 @@
 \input{/home/meg/presentations/slidesx/biot_saddlepoint_long.tex}
 
 \begin{frame}[fragile]
-  \frametitle{The Biot bilinear and linear forms in FEniCS}
-  \begin{columns}
+  \frametitle{FEniCS implementation of Biot discrete forms}
+  \vspace{-1.2em}
+  \begin{columns}[T]
   \begin{column}{0.5\textwidth}
     \begin{python}
-      from fenics import *
+from dolfin import *
+
+# Define mesh
+n = 8
+mesh = UnitSquareMesh(n, n)
+d = mesh.topology().dim()
+
+# Define VxQ (mixed) element
+cell = mesh.ufl_cell()
+V = VectorElement("CG", cell, 2)
+Q = FiniteElement("CG", cell, 1)
+M = MixedElement([V, Q])
+
+# Define mixed function space,
+# test- and trial functions
+W = FunctionSpace(mesh, M)
+(u, p) = TrialFunctions(W)
+(v, q) = TestFunctions(W)
+
+[...]
+    \end{python}
+  \end{column}
+  \begin{column}{0.5\textwidth}
+    \begin{python}
+# Previous solutions
+up_ = Function(W)
+(u_, p_) = split(up_)
+
+# Define strain and stress
+eps = lambda u : sym(grad(u))
+I = Identity(d)
+sigma = lambda u : \
+    2*mu*eps(u) + lmbda*div(u)*I
+
+# Define variational forms
+a = (inner(sigma(u), eps(v))
+     + alpha*div(v)*p
+     + alpha*div(u)*q
+     - s*p*q
+     - inner(kappa*grad(p), grad(q))
+     )*dx()
+L = (dot(f, v) + g*q
+     - s*p_*q + alpha*div(u_)*q)*dx()
+
+# Assemble 
+A = assemble(a)
+b = assemble(L)
     \end{python}
   \end{column}
 

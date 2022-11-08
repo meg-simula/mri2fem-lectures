@@ -46,7 +46,7 @@ sigma = lambda u : 2*mu*eps(u) + lmbda*div(u)*I
 # Define variational forms
 a = (inner(sigma(u), eps(v)) + alpha*div(v)*p
      + alpha*div(u)*q - s*p*q - inner(kappa*grad(p), grad(q)))*dx()
-L = (dot(f, v) + g*q + s*p_*q + alpha*div(u_)*q)*dx()
+L = (dot(f, v) + g*q - s*p_*q + alpha*div(u_)*q)*dx()
      
 # Boundary conditions
 bc0 = DirichletBC(W.sub(0), (0.0, )*d, "on_boundary")
