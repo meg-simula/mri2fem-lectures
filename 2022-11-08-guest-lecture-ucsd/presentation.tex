@@ -293,41 +293,22 @@
   \refer{\href{https://zenodo.org/communities/mri2fem/}{https://zenodo.org/communities/mri2fem/}}
 \end{frame}
 
-\begin{frame}
-  \frametitle{T1-weighted MRI reveals brain structure}
+\blackframe{
+  \frametitle{T1-weighted magnetic resonance imaging (MRI) reveals structure}
   \begin{center}
   \includegraphics[height=0.52\textheight]{/home/meg/papers/published/mri2fem/book/graphics/chp2/T1-image.png}
   \includegraphics[height=0.52\textheight]{/home/meg/papers/published/mri2fem/book/graphics/chp2/exp-brain.png}
   \includegraphics[height=0.52\textheight]{/home/meg/papers/published/mri2fem/book/graphics/chp2/exp-matters.png}
   \end{center}
 
-  Axial, sagittal and coronal cross-sections. T1w MRI: fat gives high
+  Axial, sagittal and coronal cross-sections. T1-weighted (T1w) MRI: fat gives high
   signal intensity (light/white); fluids give low signal intensity
   (dark/black).
-\end{frame}
 
-\begin{frame}
-  \frametitle{T2-weighted MRI reveals brain structure and fluids}
-\begin{figure}
-  \centering
-  \includegraphics[height=0.7\textheight]{/home/meg/papers/published/mri2fem/book/graphics/chp2/T1-image.png}
-  \hspace{2em}
-  \includegraphics[height=0.7\textheight]{/home/meg/papers/published/mri2fem/book/graphics/chp2/T2-image.png}
-\end{figure}
-T1w (left) versus T2w (right). In T2w MRI: fluids gives high signal intensity (light/white)
-\end{frame}
 
-\begin{frame}
-  \frametitle{Diffusion-tensor MRI reveals water movement and directionality}
-  \begin{center}
-  \includegraphics[width=0.4\textwidth]{/home/meg/papers/published/mri2fem/book/graphics/chp2/DTI-slice-image-crop.png}
-  \hspace{2em}
-  \includegraphics[width=0.4\textwidth]{/home/meg/papers/published/mri2fem/book/graphics/chp5/fiber-fa-2.png}
-  \end{center}
-  In DTI: high signal intensity indicates high degree of anisotropy 
-\end{frame}
+}
 
-\begin{frame}
+\blackframe{
   \frametitle{Viewing and working with MRI data sets in DICOM format}
 
   Medical images are often stored in the DICOM file format: a
@@ -340,13 +321,16 @@ T1w (left) versus T2w (right). In T2w MRI: fluids gives high signal intensity (l
 
   \bigskip
   
-  \terminal{\$ sudo apt-get install dicombrowser \hfill(my Ubuntu 18.04)\\
+  \terminal{\$ sudo apt-get install dicombrowser \hfill(Ubuntu 18.04)\\
   \$ DicomBrowser \&}
-\end{frame}
 
-\videosection{Video example: downloading and viewing the mri2fem DICOM data set}{https://youtu.be/gvc1owRl-zA}
+  \bigskip
 
-\begin{frame}
+   \alert{Video: \href{https://youtu.be/gvc1owRl-zA}{Downloading and viewing the mri2fem DICOM data set}}
+
+}
+
+\blackframe{
 \frametitle{Recommended software components}
 
 \begin{itemize}
@@ -372,10 +356,9 @@ T1w (left) versus T2w (right). In T2w MRI: fluids gives high signal intensity (l
   \includegraphics[height=2.3cm]{/home/meg/papers/published/mri2fem/book/graphics/chp1/soltn-t30-crop.png}
   \end{center}
 
+}
 
-\end{frame}
-
-\begin{frame}
+\blackframe{
 \frametitle{We follow these three steps to generate a mesh from T1 images}
 
 To generate a mesh from an MRI data set including T1-weighted images,
@@ -389,9 +372,9 @@ we follow three main steps:
 \item 
   generate a volume mesh of the interior of these using SVM-Tk.
 \end{enumerate}
-\end{frame}
+}
 
-\begin{frame}
+\blackframe{
 \frametitle{Step 2: Using FreeSurfer to segment images and create surfaces}
 
 FreeSurfer offers the command \emp{recon-all} to segment the brain
@@ -411,14 +394,10 @@ Key outputs (\emp{mri2fem-dataset/freesurfer/ernie}) are
 \item \emp{/mri}: contains volume files generated during segmentation
 \item \emp{/surf}: contains surface files generated during segmentation
 \end{itemize}
-\end{frame}
 
-\videosection{Video example: viewing the FreeSurfer output}{https://youtu.be/Svz3kYfsCQo}
-{\terminal{\$ cd mri2fem-dataset/freesurfer/ernie/surf \\
-\$ freeview \# Open lh.pial \\
-\$ \\
-\$ mris\_convert ./lh.pial pial.stl \\
-\$ paraview \# Open lh.pial.stl}
+\medskip
+
+\alert{Video: \href{https://youtu.be/Svz3kYfsCQo}{Viewing the FreeSurfer output}}
 }
 
 
@@ -451,7 +430,6 @@ In practice, brain surfaces generated from T1 images
 \end{columns}
 \end{frame}
 
-
 \begin{frame}
   \frametitle{SVM-Tk (wrapping CGAL) includes utilities for remeshing surfaces}
   \centering
@@ -459,7 +437,6 @@ In practice, brain surfaces generated from T1 images
   \includegraphics[width=0.49\textwidth]{/home/meg/papers/published/mri2fem/book/graphics/chp3/remesh-stlmesh.png}
   \refer{Mardal et al (2021, Chapter 3.2.1); \href{https://github.com/kent-and/mri2fem/blob/master/mri2fem/mri2fem/chp3/remesh_surface.py}{mri2fem/chp3/remesh\_surface.py}}
 \end{frame}
-
 
 \begin{frame}
   \frametitle{SVM-Tk includes utilities for smoothing surfaces}
@@ -474,19 +451,17 @@ after over-smoothing.
   \end{figure}
   \bigskip
   
-  \refer{Mardal et al (2021, Chapter 3.2.2); \href{https://github.com/kent-and/mri2fem/blob/master/mri2fem/mri2fem/chp3/smooth_surface.py}{mri2fem/chp3/smooth\_surface.py}}
+  \referself{Mardal et al (2021, Chapter 3.2.2); \href{https://github.com/kent-and/mri2fem/blob/master/mri2fem/mri2fem/chp3/smooth_surface.py}{mri2fem/chp3/smooth\_surface.py}}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{SVM-Tk is designed to create brain volume meshes from surfaces}
-
-\begin{columns}
+\begin{columns}[T]
 \begin{column}{0.34\textwidth}
-\begin{figure}
-  \centering
+  {\centering
   \includegraphics[width=\textwidth]{/home/meg/papers/published/mri2fem/book/graphics/chp3/ernie-volume-16-r.png} \\
   \includegraphics[width=\textwidth]{/home/meg/papers/published/mri2fem/book/graphics/chp3/ernie-volume-64-r.png}
-\end{figure}
+  }
 \end{column}
 \begin{column}{0.65\textwidth}
   \begin{python}
@@ -506,17 +481,20 @@ def create_volume_mesh(stlfile, output, n=16):
 # Create mesh    
 create_volume_mesh("lh.pial.stl", "lh.mesh")
   \end{python}
-  \refer{Mardal et al (2021, Chapter 3.1.3); \href{https://github.com/kent-and/mri2fem/blob/master/mri2fem/mri2fem/chp3/surface_to_mesh.py}{mri2fem/chp3/surface\_to\_mesh.py}}
+  \referself{Mardal et al (2021, Chapter 3.1.3); \href{https://github.com/kent-and/mri2fem/blob/master/mri2fem/mri2fem/chp3/surface_to_mesh.py}{mri2fem/chp3/surface\_to\_mesh.py}}
+
+  \medskip
+  
+\alert{Video: \href{https://youtu.be/tHGmzPqiYhQ}{Creating a mesh from brain surfaces}}
+
 \end{column}
+
 \end{columns}
+
 
 \end{frame}
 
-\videosection{Video example: creating a mesh of the left hemisphere}{https://youtu.be/tHGmzPqiYhQ}
-
-\input{/home/meg/presentations/slidesx/mri2fem_parcellations.tex}
-
-\videosection{Video example: simulating diffusion using FEniCS}{https://youtu.be/zs_vcLFfPFk}
+\input{/home/meg/presentations/slidesx/mri2fem_parcellations_short.tex}
 
 \begin{frame}
 \frametitle{Igor, bring me the brain! Want to give it a try? Natural first steps:}
